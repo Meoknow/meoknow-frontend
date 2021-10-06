@@ -14,22 +14,8 @@ App({
       }
     })
   },
-  cdToRecognize(){
-    wx.navigateTo({
-      url: '../recognize/recognize'
-    })
-  },
-  cdToMy(){
-    wx.navigateTo({
-      url: '../my/my'
-    })
-  },
-  cdToBook(){
-    wx.navigateTo({
-      url: '../pages/book/book'
-    })
-  },
   globalData: {
     userInfo: null
   },
+  globalData2: 'a'
 })

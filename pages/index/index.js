@@ -1,6 +1,8 @@
 // index.js
 // 获取应用实例
 const app = getApp()
+console.log(app)
+console.log(app.globalData2)
 
 Page({
   data: {
@@ -11,11 +13,15 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
   },
+  
   // 事件处理函数
   bindViewTap() {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '/pages/logs/logs'
     })
+  },
+  cdToRecognize(){
+    app.cdToRecognize()
   },
   onLoad() {
     if (wx.getUserProfile) {

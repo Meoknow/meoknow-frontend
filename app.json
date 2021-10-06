@@ -1,8 +1,8 @@
 {
   "pages":[
+    "pages/recognize/recognize",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/recognize/recognize",
     "pages/book/book",
     "pages/my/my"
   ],
@@ -12,6 +12,32 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle":"black"
   },
+  
+  "tabBar": {
+    "color": "#dbdbdb",
+    "backgroundColor": "#333",
+    "selectedColor": "red",
+    "list": [
+        {
+            "pagePath": "pages/recognize/recognize",
+            "iconPath": "image/wechat.png",
+            "selectedIconPath": "image/wechat_2.png",
+            "text": "微信"
+        },
+        {
+            "pagePath": "pages/book/book",
+            "iconPath": "image/note.png",
+            "selectedIconPath": "image/note_2.png",
+            "text": "通讯录"
+        },
+        {
+            "pagePath": "pages/my/my",
+            "iconPath": "image/find.png",
+            "selectedIconPath": "image/find_2.png",
+            "text": "发现"
+        }
+    ]
+},
   "usingComponents": {
     "wux-icon": "/dist/icon/index",
     "wux-badge": "/dist/badge/index",
