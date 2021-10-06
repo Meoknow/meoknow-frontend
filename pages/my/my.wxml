@@ -1,5 +1,20 @@
-<!--index.wxml-->
-<!--index.wxml--> 
+<!--my.wxml-->
+<!--my.wxml--> 
+
+<wux-tabbar defaultCurrent="2" theme="assertive" position="bottom" controlled current="2" bindchange="onChange">
+  <wux-tabbar-item title="识图" bind:click="cdToRecognize">
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+  </wux-tabbar-item>
+  <wux-tabbar-item title="图鉴" bind:click="cdToBook">
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+  </wux-tabbar-item>
+  <wux-tabbar-item title="我的" bind:click="cdToMy">
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+  </wux-tabbar-item>
+</wux-tabbar>
 
 <view class="container"> 
   <view class="userinfo"> 

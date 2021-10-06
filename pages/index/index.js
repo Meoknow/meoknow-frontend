@@ -15,11 +15,7 @@ Page({
   },
   
   // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '/pages/logs/logs'
-    })
-  },
+  
   cdToRecognize(){
     app.cdToRecognize()
   },

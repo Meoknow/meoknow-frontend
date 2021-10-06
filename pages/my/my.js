@@ -12,20 +12,18 @@ Page({
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
   },
   // 事件处理函数
-  cdAboutUs() {
-    wx.navigateTo({
-      url: '../aboutus/aboutus'
-    })
+  
+  cdToRecognize()
+  {
+    app.cdToRecognize();
   },
-  cdReplyToMe() {
-    wx.navigateTo({
-      url: '../replytome/replytome'
-    })
+  cdToMy()
+  {
+    app.cdToMy();
   },
-  cdAboutUs() {
-    wx.navigateTo({
-      url: '../aboutus/aboutus'
-    })
+  cdToBook()
+  {
+    app.cdToBook();
   },
   onLoad() {
     if (wx.getUserProfile) {

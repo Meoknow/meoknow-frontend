@@ -1,6 +1,5 @@
 // app.js
 App({
-  "navigationBarTitleText": "Meoknow",
   onLaunch() {
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
@@ -14,8 +13,27 @@ App({
       }
     })
   },
+
+  cdToRecognize()
+  {
+    wx.switchTab({
+      url: '../recognize/recognize',
+    })
+  },
+  cdToBook()
+  {
+    wx.switchTab({
+      url: '../book/book',
+    })
+  },
+  cdToMy()
+  {
+    wx.switchTab({
+      url: '../my/my',
+    })
+  },
   globalData: {
-    userInfo: null
+    userinfo: null
   },
   globalData2: 'a'
 })

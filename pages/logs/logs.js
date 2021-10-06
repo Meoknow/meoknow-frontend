@@ -14,5 +14,18 @@ Page({
         }
       })
     })
+  },
+  cdToRecognize()
+  {
+    app.cdToRecognize();
+  },
+  cdToMy()
+  {
+    app.cdToMy();
+  },
+  cdToBook()
+  {
+    app.cdToBook();
   }
+
 })

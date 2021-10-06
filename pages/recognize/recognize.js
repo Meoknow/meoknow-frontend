@@ -1,6 +1,7 @@
 // index.js
 // 获取应用实例
 const app = getApp()
+import { $wuxActionSheet } from './recognize'
 
 Page({
   data: {
@@ -12,11 +13,19 @@ Page({
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
   },
   // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../book/book'
-    })
+  cdToRecognize()
+  {
+    app.cdToRecognize();
   },
+  cdToMy()
+  {
+    app.cdToMy();
+  },
+  cdToBook()
+  {
+    app.cdToBook();
+  },
+  
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({
@@ -44,5 +53,35 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  
+  showActionSheet() {
+    wx.showActionSheet({
+      itemList: ['拍照','选择照片'],
+      success(res){
+        console.log(res.tapIndex);
+        if (res.tapIndex === 0){
+          wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'], 
+            sourceType: ['camera'], 
+            success (res) {
+              //add some functions here in the future
+            }
+          })
+        }
+        else if (res.tapIndex === 1){
+          wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'], 
+            sourceType: ['album'], 
+            success (res) {
+              //add some functions here in the future
+            }
+          })
+        }
+      }
+    })
+  },
+
 })

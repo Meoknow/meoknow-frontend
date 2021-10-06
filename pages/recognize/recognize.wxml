@@ -1,28 +1,30 @@
-<!--index.wxml-->
-<!--index.wxml--> 
+<!--recognize.wxml-->
+<!--recognize.wxml--> 
 
-<view class="debugger">this is recognize</view>>
+<wux-tabbar defaultCurrent="0" theme="assertive" position="bottom" controlled current="0" bindchange="onChange">
+  <wux-tabbar-item title="识图" bind:click="cdToRecognize">
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+  </wux-tabbar-item>
+  <wux-tabbar-item title="图鉴" bind:click="cdToBook">
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+  </wux-tabbar-item>
+  <wux-tabbar-item title="我的" bind:click="cdToMy">
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+  </wux-tabbar-item>
+</wux-tabbar>
 
-<view class="container"> 
-  <view class="userinfo"> 
-    <block wx:if="{{canIUseOpenData}}"> 
-      <view class="userinfo-avatar" bindtap="bindViewTap"> 
-        <open-data type="userAvatarUrl"></open-data> 
-      </view> 
-      <open-data type="userNickName"></open-data> 
-    </block> 
-    <block wx:elif="{{!hasUserInfo}}"> 
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button> 
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> 
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view> 
-    </block> 
-    <block wx:else> 
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image> 
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text> 
-    </block> 
-  </view> 
-  <view class="usermotto"> 
-    <text class="user-motto">{{motto}}</text> 
-  </view> 
-</view> 
-
+<view>
+  <image class="backGround" src="../../image/origin.jpg"/>
+  <view class="descripter">
+    Meoknow
+  </view>
+  <view class="actionSheet">
+    <wux-button block type="light" bind:click="showActionSheet">拍照识 Meo!</wux-button>
+  </view>
+  <view class="page__body">
+    这是一些对照片要求的说明
+  </view>
+</view>
