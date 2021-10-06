@@ -1,0 +1,49 @@
+<!--index.wxml-->
+<!--index.wxml--> 
+
+<view class="container"> 
+  <view class="userinfo"> 
+    <block wx:if="{{canIUseOpenData}}"> 
+      <view class="userinfo-avatar"> 
+        <open-data type="userAvatarUrl"></open-data> 
+      </view> 
+      <open-data type="userNickName"></open-data> 
+    </block> 
+    <block wx:elif="{{!hasUserInfo}}"> 
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button> 
+      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> 
+      <view wx:else> 请使用1.4.4及以上版本基础库 </view> 
+    </block> 
+    <block wx:else> 
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image> 
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text> 
+    </block> 
+  </view> 
+</view> 
+
+<view class="page">
+    
+    <view class="page__bd">
+        <wux-cell-group>
+          <view  bindtap="cdThumbMe">
+            <wux-cell is-link>
+              收到的赞
+              <wux-badge count="1">
+                    <wux-icon wux-class="icon" type="md-heart" size="18" />
+              </wux-badge>
+            </wux-cell>
+          </view>
+          <view  bindtap="cdReplyToMe">
+            <wux-cell is-link>
+              回复我的
+              <wux-badge dot>
+                    <wux-icon wux-class="icon" type="ios-at" size="18" />
+              </wux-badge>
+            </wux-cell>
+          </view>
+          <view  bindtap="cdAboutUs">
+            <wux-cell is-link title="关于我们"></wux-cell>
+          </view>
+        </wux-cell-group>
+    </view>
+</view>
