@@ -1,7 +1,10 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/recognize/recognize",
+    "pages/book/book",
+    "pages/my/my"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -9,6 +12,14 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle":"black"
   },
+  "usingComponents": {
+    "wux-icon": "/dist/icon/index",
+    "wux-badge": "/dist/badge/index",
+    "wux-tabbar": "/dist/tabbar/index",
+    "wux-tabbar-item": "/dist/tabbar-item/index"
+  },
+
   "style": "v2",
   "sitemapLocation": "sitemap.json"
+
 }

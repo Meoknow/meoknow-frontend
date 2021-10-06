@@ -44,5 +44,11 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  /*
+  cdToRecognize(){
+    wx.navigateTo({
+      url: '../recognize/recognize'
+    })
+  },*/
 })
