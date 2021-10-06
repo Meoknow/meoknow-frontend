@@ -1,4 +1,5 @@
 {
+  
   "pages":[
     "pages/recognize/recognize",
     "pages/index/index",
@@ -42,7 +43,10 @@
     "wux-icon": "/dist/icon/index",
     "wux-badge": "/dist/badge/index",
     "wux-tabbar": "/dist/tabbar/index",
-    "wux-tabbar-item": "/dist/tabbar-item/index"
+    "wux-tabbar-item": "/dist/tabbar-item/index",
+    
+    "wux-cell-group": "/dist/cell-group/index",
+    "wux-cell": "/dist/cell/index"
   },
 
   "style": "v2",
