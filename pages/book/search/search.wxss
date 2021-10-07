@@ -6,17 +6,17 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    padding-top: 26rpx;
+    padding-top: 30rpx;
 }
 .search-input {
     flex: 1;
     height: 60rpx;
-    line-height: 60rpx;
+    line-height: 65rpx;
     padding: 0 20rpx 0 54rpx;
-    background: #f8f8f8;
-    border-radius: 10rpx;
-    font-size: 32rpx;
-    border: 2rpx solid #ddd;
+    background: #f3eaea;
+    border-radius: 20rpx;
+    font-size: 40rpx;
+    border: 2rpx solid rgb(248, 235, 235);
 }
 
 .search-icon {
