@@ -9,7 +9,30 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
+    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
+    array: [
+      {
+        "message": "/image/neko-image/neko1.png"
+      },
+      {
+        "message": "/image/neko-image/neko2.png"
+      },
+      {
+        "message": "/image/neko-image/neko3.png"
+      },
+      {
+        "message": "/image/neko-image/neko4.png"
+      },
+      {
+        "message": "/image/neko-image/neko5.png"
+      },
+      {
+        "message": "/image/neko-image/neko6.png"
+      },
+      {
+        "message": "/image/neko-image/neko7.png"
+      }
+    ]
   },
   // 事件处理函数
   cdToRecognize()
