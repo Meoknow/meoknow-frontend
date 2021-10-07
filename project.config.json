@@ -24,6 +24,7 @@
         "lazyloadPlaceholderEnable": false,
         "useMultiFrameRuntime": true,
         "useApiHook": true,
+        "realtime": true,
         "useApiHostProcess": true,
         "babelSetting": {
             "ignore": [],
@@ -38,7 +39,8 @@
         "minifyWXSS": true,
         "disableUseStrict": false,
         "showES6CompileOption": false,
-        "useCompilerPlugins": false
+        "useCompilerPlugins": false,
+        "minifyWXML": true
     },
     "compileType": "miniprogram",
     "libVersion": "2.17.0",
