@@ -25,6 +25,7 @@
         "useMultiFrameRuntime": true,
         "useApiHook": true,
         "useApiHostProcess": true,
+        "newtiem": true,
         "babelSetting": {
             "ignore": [],
             "disablePlugins": [],
