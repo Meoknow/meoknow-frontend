@@ -47,7 +47,12 @@
         "wux-cell-group": "/dist/cell-group/index",
         "wux-cell": "/dist/cell/index",
         "wux-button": "/dist/button/index",
-        "wux-actionsheet": "/dist/actionsheet/index"
+        "wux-actionsheet": "/dist/actionsheet/index",
+        "wux-landscape": "/dist/landscape/index",
+        "wux-row": "/dist/row/index",
+        "wux-col": "/dist/col/index",
+        "wux-image": "/dist/image/index",
+        "wux-popover": "/dist/popover/index"
     },
     "style": "v2",
     "sitemapLocation": "sitemap.json"

@@ -20,10 +20,11 @@
 
 .backGround {
   opacity: 1;
-  margin-top: 140rpx;
+  margin-top: 100rpx;
   align-items: baseline;
   position:relative;
   position:absolute;
+  z-index: 0;
 }
 
 .descripter {
@@ -33,15 +34,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-top: 300rpx;
+  padding-top: 250rpx;
   box-sizing: border-box;
 }
 
-.actionSheet {
+
+.myButtonImage {
   position: relative;
-  padding-top: 100rpx;
-  padding-left: 50rps;
-  padding-right: 50rps;
+  top: 430rpx;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
 }
 
 .page__body {

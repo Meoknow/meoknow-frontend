@@ -19,12 +19,15 @@
 <view>
   <image class="backGround" src="../../image/origin.jpg"/>
   <view class="descripter">
-    Meoknow
+    <wux-popover placement="topLeft" defaultVisible="true">
+      <view slot="title" style="font-family:'sans-serif'; padding: 5px 10px 4px; font-weight:bold; color: rgb(0, 0, 0); font-size:130%;"> Meoknow!</view>
+    </wux-popover>
   </view>
-  <view class="actionSheet">
-    <wux-button block type="light" bind:click="showActionSheet">拍照识 Meo!</wux-button>
-  </view>
-  <view class="page__body">
-    这是一些对照片要求的说明
+  <view class="myButtonImage">
+    <wux-image  wux-class="image" shape="circle" src="../../image/camera.jpg" width="200rpx" height="200rpx" bind:click="showActionSheet"/>
   </view>
 </view>
+
+<wux-landscape visible="{{ landscapeVisible }}" bind:close="landscapeClose">
+    <image src="{{ returnPicture }}" mode="aspectFit" style="height: 350px" />
+</wux-landscape>

@@ -5,7 +5,8 @@ import { $wuxActionSheet } from './recognize'
 
 Page({
   data: {
-    motto: 'Hello World',
+    landscapeVisible: false,
+    returnPicture: "../../image/origin.jpg",
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -24,6 +25,14 @@ Page({
   cdToBook()
   {
     app.cdToBook();
+  },
+  landscapeClose()
+  {
+    this.setData({landscapeVisible:false,});
+  },
+  landscapeOpen()
+  {
+    this.setData({landscapeVisible:true,});
   },
   
   onLoad() {
@@ -56,30 +65,19 @@ Page({
   },
   
   showActionSheet() {
-    wx.showActionSheet({
-      itemList: ['拍照','选择照片'],
-      success(res){
-        console.log(res.tapIndex);
-        if (res.tapIndex === 0){
-          wx.chooseImage({
-            count: 1,
-            sizeType: ['original', 'compressed'], 
-            sourceType: ['camera'], 
-            success (res) {
-              //add some functions here in the future
-            }
-          })
-        }
-        else if (res.tapIndex === 1){
-          wx.chooseImage({
-            count: 1,
-            sizeType: ['original', 'compressed'], 
-            sourceType: ['album'], 
-            success (res) {
-              //add some functions here in the future
-            }
-          })
-        }
+    let mypage=this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'], 
+      sourceType: ['camera', 'album'], 
+      success (res) {
+        //add some functions here in the future
+        mypage.setData({landscapeVisible:true});
+        /*wx.previewImage({
+          current: res.tempFilePaths[0],
+          urls: res.tempFilePaths
+        })*/
+
       }
     })
   },
