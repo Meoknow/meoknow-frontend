@@ -18,9 +18,8 @@
 
 <view>
   <image class="myfillup" src="../../image/sky.png"/>
-</view>
-
-<view>
+  <view class="descripter" style="font-family:'sans-serif'; font-weight:bold; color: rgb(0, 0, 0); font-size:180%;"> Meo know</view>
+  <view class="mySubTitle" style="font-family:'sans-serif'; color: rgb(128, 64, 0); font-size:70%;"> 一键喵懂，鉴你所见</view>
   <image class="backGround" src="../../image/origin.jpg" mode="aspectFill"/>
   <view class="myButtonImage">
     <wux-image  wux-class="image" shape="circle" src="../../image/camera.jpg" width="200rpx" height="200rpx" bind:click="showActionSheet"/>

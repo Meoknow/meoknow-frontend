@@ -26,31 +26,33 @@
   background-repeat: repeat;
 }
 
+.descripter {
+  position: relative;
+  height: 50%;
+  text-align: center;
+  padding-top: 100rpx;
+  box-sizing: border-box;
+}
+.mySubTitle {
+  position: relative;
+  height: 50%;
+  text-align: center;
+  padding-top: 20rpx;
+  box-sizing: border-box;
+}
+
 .backGround {
   opacity: 1;
   align-items: baseline;
   position:relative;
   position:absolute;
   height: 50%;
-  padding-top: 470rpx;
+  padding-top: 210rpx;
   z-index: 0;
 }
-
-.descripter {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 250rpx;
-  box-sizing: border-box;
-}
-
-
 .myButtonImage {
   position: relative;
-  top: 450rpx;
+  top: 80rpx;
   z-index: 1;
   display: flex;
   flex-direction: column;
