@@ -17,6 +17,10 @@
 </wux-tabbar>
 
 <view>
+  <image class="myfillup" src="../../image/sky.png"/>
+</view>
+
+<view>
   <image class="backGround" src="../../image/origin.jpg" mode="aspectFill"/>
   <view class="myButtonImage">
     <wux-image  wux-class="image" shape="circle" src="../../image/camera.jpg" width="200rpx" height="200rpx" bind:click="showActionSheet"/>
