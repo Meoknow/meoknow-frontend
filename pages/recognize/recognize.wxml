@@ -17,12 +17,7 @@
 </wux-tabbar>
 
 <view>
-  <image class="backGround" src="../../image/origin.jpg"/>
-  <view class="descripter">
-    <wux-popover placement="topLeft" defaultVisible="true">
-      <view slot="title" style="font-family:'sans-serif'; padding: 5px 10px 4px; font-weight:bold; color: rgb(0, 0, 0); font-size:130%;"> Meoknow!</view>
-    </wux-popover>
-  </view>
+  <image class="backGround" src="../../image/origin.jpg" mode="aspectFill"/>
   <view class="myButtonImage">
     <wux-image  wux-class="image" shape="circle" src="../../image/camera.jpg" width="200rpx" height="200rpx" bind:click="showActionSheet"/>
   </view>

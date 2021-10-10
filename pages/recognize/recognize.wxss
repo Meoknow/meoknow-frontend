@@ -20,10 +20,10 @@
 
 .backGround {
   opacity: 1;
-  margin-top: 100rpx;
   align-items: baseline;
   position:relative;
   position:absolute;
+  height: 90%;
   z-index: 0;
 }
 
@@ -41,11 +41,12 @@
 
 .myButtonImage {
   position: relative;
-  top: 430rpx;
+  top: 880rpx;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-left: 530rpx;
   color: #aaa;
 }
 
