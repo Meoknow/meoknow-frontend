@@ -1,64 +1,63 @@
 {
-    "pages": [
-        "pages/recognize/recognize",
-        "pages/map/index",
-        "pages/map/sudo/map",
-        "pages/index/index",
-        "pages/book/book",
-        "pages/book/detail/detail",
-        "pages/my/my",
-        "pages/book/search/search",
-        "pages/book/detail",
-        "pages/recognize/reply"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#ebc7a4",
-        "navigationBarTitleText": "Meoknow",
-        "navigationBarTextStyle": "black",
-        "enablePullDownRefresh": true
-    },
-    "tabBar": {
-        "custom": true,
-        "color": "#dbdbdb",
-        "backgroundColor": "#333",
-        "selectedColor": "red",
-        "list": [
-            {
-                "pagePath": "pages/recognize/recognize",
-                "text": "识图"
-            },
-            {
-                "pagePath": "pages/book/book",
-                "text": "图鉴"
-            },
-            {
-                "pagePath": "pages/map/sudo/map",
-                "text": "地图"
-            },
-            {
-                "pagePath": "pages/my/my",
-                "text": "我的"
-            }
-            
-            
-        ]
-    },
-    "usingComponents": {
-        "wux-icon": "/dist/icon/index",
-        "wux-badge": "/dist/badge/index",
-        "wux-tabbar": "/dist/tabbar/index",
-        "wux-tabbar-item": "/dist/tabbar-item/index",
-        "wux-cell-group": "/dist/cell-group/index",
-        "wux-cell": "/dist/cell/index",
-        "wux-button": "/dist/button/index",
-        "wux-toptips": "/dist/toptips/index"
-    },
-    "style": "v2",
-    "permission": {
-        "scope.userLocation": {
-        "desc": "你的位置信息将用于定位"
-        }
-    },
-    "sitemapLocation": "sitemap.json"
+  "pages": [
+    "pages/recognize/recognize",
+    "pages/map/index",
+    "pages/map/sudo/map",
+    "pages/index/index",
+    "pages/book/book",
+    "pages/book/detail/detail",
+    "pages/my/my",
+    "pages/book/search/search",
+    "pages/book/detail",
+    "pages/recognize/reply",
+    "pages/book/list"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ebc7a4",
+    "navigationBarTitleText": "Meoknow",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#dbdbdb",
+    "backgroundColor": "#333",
+    "selectedColor": "red",
+    "list": [
+      {
+        "pagePath": "pages/recognize/recognize",
+        "text": "识图"
+      },
+      {
+        "pagePath": "pages/book/book",
+        "text": "图鉴"
+      },
+      {
+        "pagePath": "pages/map/sudo/map",
+        "text": "地图"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "wux-icon": "/dist/icon/index",
+    "wux-badge": "/dist/badge/index",
+    "wux-tabbar": "/dist/tabbar/index",
+    "wux-tabbar-item": "/dist/tabbar-item/index",
+    "wux-cell-group": "/dist/cell-group/index",
+    "wux-cell": "/dist/cell/index",
+    "wux-button": "/dist/button/index",
+    "wux-toptips": "/dist/toptips/index"
+  },
+  "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于定位"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
 }
