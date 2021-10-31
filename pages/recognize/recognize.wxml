@@ -16,6 +16,8 @@
   </wux-tabbar-item>
 </wux-tabbar>
 
+<wux-toptips id="wux-toptips" />
+
 <view>
   <image class="myfillup" src="../../image/sky.png"/>
   <view class="descripter" style="font-family:'sans-serif'; font-weight:bold; color: rgb(0, 0, 0); font-size:180%;"> Meo know</view>
@@ -27,5 +29,6 @@
 </view>
 
 <wux-landscape visible="{{ landscapeVisible }}" bind:close="landscapeClose">
-    <image src="{{ returnPicture }}" mode="aspectFit" style="height: 350px" />
+    <image id="pictureImg" src="{{ returnPicture }}" mode="aspectFit" style="height: 400rpx" />
+
 </wux-landscape>
