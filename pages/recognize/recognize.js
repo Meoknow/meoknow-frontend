@@ -51,13 +51,13 @@ Page({
   {
     if(mode==0)//left
     {
-      if(currentPicture==0) this.tipNoMorePictures('no more left cats');
+      if(currentPicture==0) this.tipNoMorePictures();
       else
         --currentPicture;
     }
     else//right
     {
-      if(currentPicture==catPictures.length-1) this.tipNoMorePictures('no more right cats');
+      if(currentPicture==catPictures.length-1) this.tipNoMorePictures();
       else
         ++currentPicture;
     }
@@ -78,8 +78,8 @@ Page({
   getCatInformation(cat_id)
   {
     wx.request({
-      url: 'http://localhost:5000/cats/{{cat_id}}/',
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      "url": 'http://localhost:5000/cats/{{cat_id}}/',
+      "method": 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       //header: {}, // 设置请求的 header
       success: function(res){
         if(res.data.code==0)//find cat_id
@@ -91,10 +91,35 @@ Page({
       },
      })
   },
+  updatePhotos(myBase64Img)
+  {
+    myBase64Img=myBase64Img.toString();
+    console.log(myBase64Img);
+    wx.request({
+      url: 'http://localhost:5000/photos/',
+      data: {
+        "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAqklEQVR4nO2WUQ5AMBBElyv1AO0nJ/brAHqm8dGkoWxtZTcizB9hZ97IogNAlupNp/8GDxiEMYYxGhoQ0Ty53TH05IfleFKNoGgmS7Oispwku3KSFAwq0xUM6tOh+JBZmcYHV5HkTsk14CqaJ3dcev2K/LBwMYXxWYLMQfyKKhBwYeXxLwgyxxaiGUgYJKduig+gg/ivImU/f6PxMt/kBoJ7ettH/zf4pMEKrUFkpmAWyB4AAAAASUVORK5CYII=",
+        "owner": "public",
+      },
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      /*header: {
+        "content-type": "application/json; charset=UTF-8"
+      }, // 设置请求的 header*/
+      success: function(res){
+        console.log(res.statusCode);
+        if(res.statusCode==200)//加入照片
+        console.log('build photo information success');
+      },
+      fail: function(res) {
+        console.log("res.errMsg");
+      },
+     })
+  },
   addCatInformation(myBase64Img)
   {
     console.log("in add cat");
-    console.log(myBase64Img);
+    let test={name:'ass',data:myBase64Img};
+    console.log(test.data);
     wx.request({
       url: 'http://localhost:5000/cats/',
       data: {
@@ -150,17 +175,18 @@ Page({
       sourceType: ['camera', 'album'], 
       success: function(res) {
         
-        let myBase64Img;
         catPictures=[];//clear catPictures;
         var FSM = wx.getFileSystemManager();//获取全局文件管理系统
         FSM.readFile({//读本地暂存图
           filePath: res.tempFilePaths[0],
           encoding: "base64",//base64格式解码
           success: function(data) {
+            let myBase64Img;
             myBase64Img = 'data:image/png;base64,'+data.data;//解码后放在这
-            mypage.addCatInformation(myBase64Img);
-            mypage.getCatInformation(1);
-    //        mypage.postMyImg(myBase64Img);
+            mypage.updatePhotos(myBase64Img);
+    /*        mypage.addCatInformation(myBase64Img);
+            mypage.getCatInformation(1);*/
+//            mypage.postMyImg(myBase64Img);
             mypage.verifyCatInformation();
           }
         });
