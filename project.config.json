@@ -24,7 +24,6 @@
         "lazyloadPlaceholderEnable": false,
         "useMultiFrameRuntime": true,
         "useApiHook": true,
-        "realtime": true,
         "useApiHostProcess": true,
         "babelSetting": {
             "ignore": [],
