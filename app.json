@@ -52,7 +52,8 @@
         "wux-image": "/dist/image/index",
         "wux-popover": "/dist/popover/index",
         "wux-toptips": "/dist/toptips/index",
-        "wux-landscape": "/dist/landscape/index"
+        "wux-landscape": "/dist/landscape/index",
+        "wux-animation-group": "/dist/animation-group/index"
     },
     "style": "v2",
     "sitemapLocation": "sitemap.json"
