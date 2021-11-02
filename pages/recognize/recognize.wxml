@@ -29,6 +29,6 @@
 </view>
 
 <wux-landscape visible="{{ landscapeVisible }}" bind:close="landscapeClose">
-    <image id="pictureImg" src="{{ returnPicture }}" mode="aspectFit" style="height: 400rpx" />
+    <image id="pictureImg" src="{{ returnPicture }}" mode="aspectFit" style="height: 400rpx" bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'/>
 
 </wux-landscape>

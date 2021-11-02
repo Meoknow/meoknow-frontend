@@ -4,11 +4,14 @@ const app = getApp()
 import { $wuxToptips } from '../../dist/index'
 var catPictures;//saving Get cat informaiton data, use data.image_url to get url
 var currentPicture;
+var totalRequest;
 
 Page({
   data: {
     landscapeVisible: false,
     returnPicture: "../../image/origin.jpg",
+    touchS : [0,0],
+    touchE : [0,0],
   },
 
   cdToRecognize()
@@ -47,58 +50,65 @@ Page({
         success() {},
     })
   },
-  returnPictureTurn(mode)
-  {
-    if(mode==0)//left
-    {
-      if(currentPicture==0) this.tipNoMorePictures();
-      else
-        --currentPicture;
-    }
-    else//right
-    {
-      if(currentPicture==catPictures.length-1) this.tipNoMorePictures();
-      else
-        ++currentPicture;
-    }
-    returnPicture=catPictures[currentPicture].image_url;
-  },
   verifyCatInformation()
   {
+    let mypage=this;
+    console.log("start verify");
+    console.log(catPictures[0]);
+    console.log(catPictures.length);
     if(catPictures.length==0)
     {
+      console.log('catPictureLength=0');
       this.tipFindNoCat();
     }
     else
     {
+      console.log('catPicturelength!=0');
       currentPicture=0;
+      console.log(catPictures[0].img_url);
+      //need to change in later develop
+      mypage.setData({returnPicture:"http://"+catPictures[0].img_url});
       mypage.setData({landscapeVisible:true});//showing cats
     }
   },
   getCatInformation(cat_id)
   {
+    let mypage=this;
     wx.request({
-      "url": 'http://localhost:5000/cats/{{cat_id}}/',
+      "url": 'http://localhost:5000/cats/'+cat_id,
+//      "url": 'http://localhost:5000/cats/',
       "method": 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       //header: {}, // 设置请求的 header
       success: function(res){
+//        console.log(res.data.data[0]);
+        console.log("request =end");
         if(res.data.code==0)//find cat_id
+        {
           catPictures.push(res.data.data);
+          console.log("loading to catpictures");
+          console.log(catPictures[0]);
+          console.log(catPictures.length);
+        }
         else console.log("we find no cat_id"); 
+        --totalRequest;
+        if(totalRequest==0)
+          mypage.verifyCatInformation();
       },
       fail: function(res) {
         console.log(res.errMsg);
+        --totalRequest;
+        if(totalRequest==0)
+          verifyCatInformation();
       },
      })
   },
   updatePhotos(myBase64Img)
   {
     myBase64Img=myBase64Img.toString();
-    console.log(myBase64Img);
     wx.request({
       url: 'http://localhost:5000/photos/',
       data: {
-        "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAqklEQVR4nO2WUQ5AMBBElyv1AO0nJ/brAHqm8dGkoWxtZTcizB9hZ97IogNAlupNp/8GDxiEMYYxGhoQ0Ty53TH05IfleFKNoGgmS7Oispwku3KSFAwq0xUM6tOh+JBZmcYHV5HkTsk14CqaJ3dcev2K/LBwMYXxWYLMQfyKKhBwYeXxLwgyxxaiGUgYJKduig+gg/ivImU/f6PxMt/kBoJ7ettH/zf4pMEKrUFkpmAWyB4AAAAASUVORK5CYII=",
+        "image": myBase64Img,
         "owner": "public",
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -106,7 +116,6 @@ Page({
         "content-type": "application/json; charset=UTF-8"
       }, // 设置请求的 header*/
       success: function(res){
-        console.log(res.statusCode);
         if(res.statusCode==200)//加入照片
         console.log('build photo information success');
       },
@@ -117,9 +126,7 @@ Page({
   },
   addCatInformation(myBase64Img)
   {
-    console.log("in add cat");
     let test={name:'ass',data:myBase64Img};
-    console.log(test.data);
     wx.request({
       url: 'http://localhost:5000/cats/',
       data: {
@@ -151,15 +158,17 @@ Page({
        if(res.statusCode==200)//找到猫
        {
           let i;
-          for(i=0;i<res.data.data.cat.length;++i)
+          totalRequest=res.data.data.cats.length;
+          for(i=0;i<res.data.data.cats.length;++i)
           {
-            let cat=res.data.data.cat[i];
+            let cat=res.data.data.cats[i];
             let cat_id=cat.cat_id;//get cat_id
             console.log(cat);
             console.log(cat_id);
             getCatInformation(cat_id);//transform it into information and push to cat Pictures.
           }
        }
+       else mypage.verifyCatInformation();
        //否则没找到猫，catPictures为空
       },
       fail: function(res) {
@@ -183,11 +192,12 @@ Page({
           success: function(data) {
             let myBase64Img;
             myBase64Img = 'data:image/png;base64,'+data.data;//解码后放在这
-            mypage.updatePhotos(myBase64Img);
-    /*        mypage.addCatInformation(myBase64Img);
-            mypage.getCatInformation(1);*/
+//            mypage.updatePhotos(myBase64Img);
+//            mypage.addCatInformation(myBase64Img);
+            totalRequest=2;
+            mypage.getCatInformation(1);
+            mypage.getCatInformation(1);
 //            mypage.postMyImg(myBase64Img);
-            mypage.verifyCatInformation();
           }
         });
 
@@ -196,6 +206,39 @@ Page({
         console.log(res.errMsg);
       }
     })
+  },
+
+  touchStart: function(e){
+    // console.log(e.touches[0].pageX)
+    let sx = e.touches[0].pageX
+    let sy = e.touches[0].pageY
+    this.data.touchS = [sx,sy]
+  },
+  touchMove: function(e){
+    let sx = e.touches[0].pageX;
+    let sy = e.touches[0].pageY;
+    this.data.touchE = [sx, sy]
+  },
+  touchEnd: function(e){
+    let start = this.data.touchS
+    let end = this.data.touchE
+    let mypage=this;
+
+    if(start[0] < end[0] - 50){
+      console.log('右滑')
+      if(currentPicture==0) this.tipNoMorePictures();
+      else
+        --currentPicture;
+      mypage.setData({returnPicture:catPictures[currentPicture].image_url});
+    }else if(start[0] > end[0] + 50){
+      console.log('左滑')
+      if(currentPicture==catPictures.length-1) this.tipNoMorePictures();
+      else
+        ++currentPicture;
+      mypage.setData({returnPicture:catPictures[currentPicture].image_url});
+    }else{
+      console.log('静止')
+    }
   },
 
 })
