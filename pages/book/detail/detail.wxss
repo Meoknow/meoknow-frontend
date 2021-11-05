@@ -1,0 +1,18 @@
+.neko-box{
+  }
+  .neko-box .neko-list{
+    background: #f5f6f5;
+  }
+  .neko-box .neko-list image{
+    display: block;
+    margin-top:30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600rpx;
+    height: 600rpx;
+    border-radius: 10px;
+  }
+  .neko-box .neko-list .neko-text{
+    text-align: center;
+    font-size: 40rpx;
+  }
