@@ -126,6 +126,7 @@ Page({
   },
   addCatInformation(myBase64Img)
   {
+    console.log("ax");
     let test={name:'ass',data:myBase64Img};
     wx.request({
       url: 'http://localhost:5000/cats/',
@@ -177,6 +178,7 @@ Page({
      })
   },
   showActionSheet() {
+    console.log("aa");
     let mypage=this;
     wx.chooseImage({
       count: 1,

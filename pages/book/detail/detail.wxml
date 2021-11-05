@@ -1,0 +1,9 @@
+<!--pages/book/detail.wxml-->
+        <view class="neko-box">
+            <view class="neko-list">
+                <navigator url="details/details">
+                    <image src="/image/neko-image/neko2.png"></image>
+                    <view class="neko-text"><text>Cute cat</text></view>
+                </navigator>
+            </view>
+        </view>

@@ -1,11 +1,13 @@
 {
     "pages": [
+        "pages/book/detail/detail",
         "pages/book/book",
         "pages/recognize/recognize",
         "pages/index/index",
         "pages/logs/logs",
         "pages/my/my",
-        "pages/book/search/search"
+        "pages/book/search/search",
+        "pages/book/detail"
     ],
     "window": {
         "backgroundTextStyle": "light",
