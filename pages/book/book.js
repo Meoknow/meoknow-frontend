@@ -1,7 +1,6 @@
 // index.js
 // 获取应用实例
 const app = getApp()
-
 Page({
   data: {
     motto: 'Hello World',
@@ -10,6 +9,9 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
+    catPictures:[],
+
+    Name: 'fds',
     array: [
       {
         "message": "/image/neko-image/neko1.png"
@@ -54,6 +56,11 @@ Page({
       })
     }
   },
+
+  onShow()
+  {
+    this.flush();
+  },
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getUserProfile({
@@ -73,6 +80,45 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+
+  flush()
+  {
+    var that = this;
+    var tmp = new Array();
+    wx.request({
+      "url": 'http://localhost:5000/cats/',
+//      "url": 'http://localhost:5000/cats/',
+      "method": 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      //header: {}, // 设置请求的 header
+      success: function(res){
+//        console.log(res.data.data[0]);
+        console.log("request =end");
+      
+        if(res.data.code==0)//get data success
+        {
+          var n = res.data.data.length;
+          for(let i=0;i<n;i++)
+            tmp.push(res.data.data[i]);
+          console.log("loading to catpictures");
+          for(let i=0;i<tmp.length;i++)
+            console.log(tmp[i].name),tmp[i].img_url="http://"+tmp[i].img_url,tmp[i].url="detail/detail?cat_id"+tmp[i].cat_id;
+           that.setData({catPictures:tmp});
+        }
+        else console.log("we find no cat_id");
+      },
+      fail: function(res) {
+        console.log(res.errMsg);
+      }
+    })
+  },
+  Navigator:function(e)
+  {
+    var cat = e.currentTarget.dataset.cat;
+    console.log(cat.cat_id);
+    wx.navigateTo({
+      url: "detail/detail?cat_id="+cat.cat_id
     })
   }
 })
