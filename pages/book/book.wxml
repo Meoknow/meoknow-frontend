@@ -27,12 +27,10 @@
 
  <view class="neko">
         <view class="neko-box">
-            <view class="neko-list" wx:for="{{array}}">
-                <navigator url="details/details">
-                    <image src="{{item.message}}"></image>
-                    <view class="neko-text"><text>Cute cat</text></view>
-                </navigator>
+            <view class="neko-list" wx:for="{{catPictures}}" bindtap="Navigator" data-cat="{{item}}">
+                    <image src="{{item.img_url}}"></image>
+                    <view class="neko-text"><text>{{item.name}}</text></view>
             </view>
         </view>
-    </view>
+</view>
 

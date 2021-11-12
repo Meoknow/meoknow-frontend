@@ -1,15 +1,17 @@
 {
     "pages": [
-        "pages/book/book",
         "pages/recognize/recognize",
+        "pages/book/book",
+        "pages/book/detail/detail",
         "pages/index/index",
         "pages/logs/logs",
         "pages/my/my",
-        "pages/book/search/search"
+        "pages/book/search/search",
+        "pages/book/detail"
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
+        "navigationBarBackgroundColor": "#ebc7a4",
         "navigationBarTitleText": "Meoknow",
         "navigationBarTextStyle": "black"
     },
