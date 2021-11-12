@@ -126,11 +126,12 @@ Page({
   },
   addCatInformation(myBase64Img)
   {
-    let test={name:'ass',data:myBase64Img};
+    console.log("ax");
+    let test={name:'asttfd6',data:myBase64Img};
     wx.request({
       url: 'http://localhost:5000/cats/',
       data: {
-        "name": "ass", // 冒菜妈
+        "name": "asttfd6", // 冒菜妈
         "image": myBase64Img,
       },
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -177,6 +178,7 @@ Page({
      })
   },
   showActionSheet() {
+    console.log("aa");
     let mypage=this;
     wx.chooseImage({
       count: 1,

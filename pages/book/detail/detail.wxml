@@ -1,0 +1,78 @@
+<!--pages/book/detail.wxml-->
+        <view class="neko-box">
+            <view class="neko-list">
+                <navigator url="details/details">
+                    <image src="/image/neko-image/neko2.png"></image>
+                    <view class="neko-text"><text>{{Name}}</text></view>
+                </navigator>
+            </view>
+        </view>
+
+        <view class="text">
+            <view class="list">
+                <view class="title">性别</view>
+
+                <view wx:if="{{gender == null}}">
+                    <text class="content">不明</text>
+                </view>
+                <view wx:else>
+                    <wux-icon wux-class="icon" type="md-female" size="22" slot="icon-on" class="female"/>
+                    <text class="content">  /  </text>
+
+                    <wux-icon wux-class="icon" type="md-male" size="22" slot="icon-on" class="male"/>
+                </view>
+            </view>
+
+
+            <view class="list">
+                <view class="title">状况</view>
+                
+                <view wx:if="{{health == null}}">
+                    <text class="content">不明</text>
+                </view>
+                
+                <view wx:else>
+                    <view class="content">{{health}}</view>
+                </view>
+            </view>
+
+
+            <view class="list">      
+                <view class="title">绝育情况</view>
+                <view wx:if="{{desexing == null}}">
+                    <text class="content">不明</text>
+                </view>
+                
+                <view wx:else>
+                    <view class="content">{{desexing}}</view>
+                </view>
+            </view>
+
+
+            <view class="list">               
+                <view class="title">毛色</view>
+                <view wx:if="{{color == null}}">
+                    <text class="content">不明</text>
+                </view>
+                
+                <view wx:else>
+                    <view class="content">{{color}}</view>
+                </view>
+            </view>
+
+            <view class="list">
+                <view class="title">名字来源</view>
+                <view wx:if="{{Namefrom == null}}">
+                    <text class="content">不明</text>
+                </view>
+                
+                <view wx:else>
+                    <view class="content">{{Namefrom}}</view>
+                </view>
+            </view>
+        </view>
+
+
+        <view>
+        
+        </view>
