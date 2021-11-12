@@ -21,20 +21,14 @@
         "list": [
             {
                 "pagePath": "pages/recognize/recognize",
-                "iconPath": "image/wechat.png",
-                "selectedIconPath": "image/wechat_2.png",
                 "text": "识图"
             },
             {
                 "pagePath": "pages/book/book",
-                "iconPath": "image/note.png",
-                "selectedIconPath": "image/note_2.png",
                 "text": "图鉴"
             },
             {
                 "pagePath": "pages/my/my",
-                "iconPath": "image/find.png",
-                "selectedIconPath": "image/find_2.png",
                 "text": "我的"
             }
         ]
