@@ -4,6 +4,7 @@ const app = getApp()
 import { $wuxToptips } from '../../dist/index'
 var catPictures;//saving Get cat informaiton data, use data.image_url to get url
 var totalRequest;
+var server=app.globalData.server;
 
 Page({
   data: {
@@ -69,7 +70,7 @@ Page({
   {
     let mypage=this;
     wx.request({
-      "url": 'http://localhost:5000/cats/'+cat_id,
+      "url": server+'/cats/'+cat_id,
 //      "url": 'http://localhost:5000/cats/',
       "method": 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       //header: {}, // 设置请求的 header
@@ -99,7 +100,7 @@ Page({
   {
     myBase64Img=myBase64Img.toString();
     wx.request({
-      url: 'http://localhost:5000/photos/',
+      url: server+'/photos/',
       data: {
         "image": myBase64Img,
         "owner": "public",
@@ -122,7 +123,7 @@ Page({
     console.log("ax");
     let test={name:'asttfd6',data:myBase64Img};
     wx.request({
-      url: 'http://localhost:5000/cats/',
+      url: server+'/cats/',
       data: {
         "name": "asttfd6", // 冒菜妈
         "image": myBase64Img,
@@ -143,18 +144,20 @@ Page({
   {
     let mypage=this;
     wx.request({
-      url: 'http://localhost:5000/identify/',
+      url: server+'/identify/',
       data: {"image":myBase64Img},
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       //header: {}, // 设置请求的 header
       success: function(res){
       // 识图成功
+        console.log("post success");
         totalRequest=0;
         if(res.statusCode==200)//找到猫
         {
           let i;
           catPictures=[];
           totalRequest=res.data.data.cats.length;
+          console.log(totalRequest);
           for(i=0;i<totalRequest;++i)
           catPictures.push(1);
           for(i=0;i<res.data.data.cats.length;++i)
@@ -163,8 +166,7 @@ Page({
             let cat_id=cat.cat_id;//get cat_id
             console.log(cat);
             console.log(cat_id);
-            confidence.push(cat.confidence);
-            getCatInformation(cat_id,i,cat.confidence);//transform it into information and push to cat Pictures.
+            mypage.getCatInformation(cat_id,i,cat.confidence);//transform it into information and push to cat Pictures.
           }
         }
        else mypage.verifyCatInformation();
@@ -191,19 +193,27 @@ Page({
           encoding: "base64",//base64格式解码
           success: function(data) {
             let myBase64Img;
-            myBase64Img = 'data:image/png;base64,'+data.data;//解码后放在这
+            let suffix;
+            let i;
+            for(i=res.tempFilePaths[0].length;i>=0;--i)
+            if(res.tempFilePaths[0][i]=='.')
+            {
+              suffix=res.tempFilePaths[0].slice(i+1);
+              break;
+            }
+            console.log(suffix);
+            myBase64Img = 'data:image/'+suffix+';base64,'+data.data;//解码后放在这
 //            mypage.updatePhotos(myBase64Img);
 //            mypage.addCatInformation(myBase64Img);
 
-            totalRequest=3;
-            let i;
+            /*totalRequest=3;
             for(i=0;i<totalRequest;++i)
             catPictures.push(1);
             mypage.getCatInformation(1,0,0.5);
             mypage.getCatInformation(1,1,0.4);
-            mypage.getCatInformation(1,2,0.3);
+            mypage.getCatInformation(1,2,0.3);*/
 
-//            mypage.postMyImg(myBase64Img);
+            mypage.postMyImg(myBase64Img);
           }
         });
 

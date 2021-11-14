@@ -33,7 +33,6 @@ App({
     })
   },
   globalData: {
-    userinfo: null
+    server: "http://39.104.59.169:3000",
   },
-  globalData2: 'a'
 })
