@@ -38,10 +38,10 @@
       <block wx:for="{{returnCatPictures}}" wx:key="cat_id">
         <swiper-item>
           <image class="myswiperItem" src="{{ item.img_url }}" mode="aspectFit"/>
-          <view class="myswiperNote">您拍的猫咪可能是
+            <text class="myswiperNote">您拍的猫咪可能是
 {{item.name}}
 得分{{item.confidence}}
-          </view>
+            </text>
         </swiper-item>
       </block>
     </swiper>

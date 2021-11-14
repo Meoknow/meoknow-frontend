@@ -230,4 +230,22 @@ Page({
     })
   },
 
+  navi_to_detail:function(e)
+  {
+    var cat = e.currentTarget.dataset.cat;
+    console.log(cat.cat_id);
+    wx.navigateTo({
+      url: "detail/detail?cat_id="+cat.cat_id
+    })
+  }
+  
+  /*
+  使用navi_to_detail的时候放在标签里
+  <text class=... bindtap="Navigator" data-cat="{{item}}> </text>
+  
+  data-cat={{item}}中的item就是
+    wx:for="{{returnCatPictures}}"
+  循环中获取的item
+  */
+
 })
