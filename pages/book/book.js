@@ -88,7 +88,7 @@ Page({
     var that = this;
     var tmp = new Array();
     wx.request({
-      "url": 'http://localhost:5000/cats/',
+      "url": 'http://39.104.59.169:3000/cats/',
 //      "url": 'http://localhost:5000/cats/',
       "method": 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       //header: {}, // 设置请求的 header
@@ -121,4 +121,5 @@ Page({
       url: "detail/detail?cat_id="+cat.cat_id
     })
   }
+
 })

@@ -69,7 +69,7 @@ Page({
   {
     let mypage=this;
     wx.request({
-      "url": 'http://localhost:5000/cats/'+cat_id,
+      "url": 'http://39.104.59.169:3000/cats/'+cat_id,
 //      "url": 'http://localhost:5000/cats/',
       "method": 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       //header: {}, // 设置请求的 header
@@ -99,7 +99,7 @@ Page({
   {
     myBase64Img=myBase64Img.toString();
     wx.request({
-      url: 'http://localhost:5000/photos/',
+      url: 'http://39.104.59.169:3000/photos/',
       data: {
         "image": myBase64Img,
         "owner": "public",
@@ -122,7 +122,7 @@ Page({
     console.log("ax");
     let test={name:'asttfd6',data:myBase64Img};
     wx.request({
-      url: 'http://localhost:5000/cats/',
+      url: 'http://39.104.59.169:3000/cats/',
       data: {
         "name": "asttfd6", // 冒菜妈
         "image": myBase64Img,
@@ -143,7 +143,7 @@ Page({
   {
     let mypage=this;
     wx.request({
-      url: 'http://localhost:5000/identify/',
+      url: 'http://39.104.59.169:3000/identify/',
       data: {"image":myBase64Img},
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       //header: {}, // 设置请求的 header
@@ -219,5 +219,23 @@ Page({
       showMask: false
     })
   },
+
+  navi_to_detail:function(e)
+  {
+    var cat = e.currentTarget.dataset.cat;
+    console.log(cat.cat_id);
+    wx.navigateTo({
+      url: "detail/detail?cat_id="+cat.cat_id
+    })
+  }
+  
+  /*
+  使用navi_to_detail的时候放在标签里
+  <text class=... bindtap="Navigator" data-cat="{{item}}> </text>
+  
+  data-cat={{item}}中的item就是
+    wx:for="{{returnCatPictures}}"
+  循环中获取的item
+  */
 
 })

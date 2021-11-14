@@ -60,7 +60,7 @@ Page({
 
       var that = this;
       wx.request({
-        "url": 'http://localhost:5000/cats/'+that.data.cat_id,
+        "url": 'http://39.104.59.169:3000/cats/'+that.data.cat_id,
   //      "url": 'http://localhost:5000/cats/',
         "method": 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         //header: {}, // 设置请求的 header
@@ -74,11 +74,11 @@ Page({
             console.log(r);
              that.setData({
                Name:r.name,
-               img_url:r.img_url,
+               img_url:"http://"+r.img_url,
                gender:r.gender,
                health:r.health_status,
                desexing:r.desexing_status
-              });
+              });x
           }
           else console.log("we find no cat_id");
         },
