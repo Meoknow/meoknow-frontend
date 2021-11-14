@@ -3,15 +3,13 @@
 const app = getApp()
 import { $wuxToptips } from '../../dist/index'
 var catPictures;//saving Get cat informaiton data, use data.image_url to get url
-var currentPicture;
 var totalRequest;
 
 Page({
   data: {
-    landscapeVisible: false,
+    returnCatPictures: "../../image/origin.jpg",
+    showMask: false,
     returnPicture: "../../image/origin.jpg",
-    touchS : [0,0],
-    touchE : [0,0],
   },
 
   cdToRecognize()
@@ -29,10 +27,6 @@ Page({
   landscapeClose()
   {
     this.setData({landscapeVisible:false,});
-  },
-  landscapeOpen()
-  {
-    this.setData({landscapeVisible:true,});
   },
   tipFindNoCat() {
     $wuxToptips().error({
@@ -54,24 +48,24 @@ Page({
   {
     let mypage=this;
     console.log("start verify");
-    console.log(catPictures[0]);
-    console.log(catPictures.length);
-    if(catPictures.length==0)
-    {
+    let i;
+    for(i=catPictures.length;i>=0;--i)
+      if(catPictures[i]==1)
+      {
+        catPictures.splice(i,1);
+      }
+
+    if(catPictures.length==0) {
       console.log('catPictureLength=0');
       this.tipFindNoCat();
     }
-    else
-    {
+    else {
+      mypage.setData({returnCatPictures:catPictures});
       console.log('catPicturelength!=0');
-      currentPicture=0;
-      console.log(catPictures[0].img_url);
-      //need to change in later develop
-      mypage.setData({returnPicture:"http://"+catPictures[0].img_url});
-      mypage.setData({landscapeVisible:true});//showing cats
+      mypage.setData({showMask:true});//showing cats
     }
   },
-  getCatInformation(cat_id)
+  getCatInformation(cat_id,index,confidence)
   {
     let mypage=this;
     wx.request({
@@ -84,10 +78,9 @@ Page({
         console.log("request =end");
         if(res.data.code==0)//find cat_id
         {
-          catPictures.push(res.data.data);
-          console.log("loading to catpictures");
-          console.log(catPictures[0]);
-          console.log(catPictures.length);
+          catPictures[index]=res.data.data;
+          catPictures[index].confidence=confidence;
+          catPictures[index].img_url="http://"+catPictures[index].img_url;
         }
         else console.log("we find no cat_id"); 
         --totalRequest;
@@ -98,7 +91,7 @@ Page({
         console.log(res.errMsg);
         --totalRequest;
         if(totalRequest==0)
-          verifyCatInformation();
+          mypage.verifyCatInformation();
       },
      })
   },
@@ -155,20 +148,25 @@ Page({
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       //header: {}, // 设置请求的 header
       success: function(res){
-       // 识图成功
-       if(res.statusCode==200)//找到猫
-       {
+      // 识图成功
+        totalRequest=0;
+        if(res.statusCode==200)//找到猫
+        {
           let i;
+          catPictures=[];
           totalRequest=res.data.data.cats.length;
+          for(i=0;i<totalRequest;++i)
+          catPictures.push(1);
           for(i=0;i<res.data.data.cats.length;++i)
           {
             let cat=res.data.data.cats[i];
             let cat_id=cat.cat_id;//get cat_id
             console.log(cat);
             console.log(cat_id);
-            getCatInformation(cat_id);//transform it into information and push to cat Pictures.
+            confidence.push(cat.confidence);
+            getCatInformation(cat_id,i,cat.confidence);//transform it into information and push to cat Pictures.
           }
-       }
+        }
        else mypage.verifyCatInformation();
        //否则没找到猫，catPictures为空
       },
@@ -196,9 +194,15 @@ Page({
             myBase64Img = 'data:image/png;base64,'+data.data;//解码后放在这
 //            mypage.updatePhotos(myBase64Img);
 //            mypage.addCatInformation(myBase64Img);
-            totalRequest=2;
-            mypage.getCatInformation(1);
-            mypage.getCatInformation(1);
+
+            totalRequest=3;
+            let i;
+            for(i=0;i<totalRequest;++i)
+            catPictures.push(1);
+            mypage.getCatInformation(1,0,0.5);
+            mypage.getCatInformation(1,1,0.4);
+            mypage.getCatInformation(1,2,0.3);
+
 //            mypage.postMyImg(myBase64Img);
           }
         });
@@ -210,37 +214,10 @@ Page({
     })
   },
 
-  touchStart: function(e){
-    // console.log(e.touches[0].pageX)
-    let sx = e.touches[0].pageX
-    let sy = e.touches[0].pageY
-    this.data.touchS = [sx,sy]
-  },
-  touchMove: function(e){
-    let sx = e.touches[0].pageX;
-    let sy = e.touches[0].pageY;
-    this.data.touchE = [sx, sy]
-  },
-  touchEnd: function(e){
-    let start = this.data.touchS
-    let end = this.data.touchE
-    let mypage=this;
-
-    if(start[0] < end[0] - 50){
-      console.log('右滑')
-      if(currentPicture==0) this.tipNoMorePictures();
-      else
-        --currentPicture;
-      mypage.setData({returnPicture:catPictures[currentPicture].image_url});
-    }else if(start[0] > end[0] + 50){
-      console.log('左滑')
-      if(currentPicture==catPictures.length-1) this.tipNoMorePictures();
-      else
-        ++currentPicture;
-      mypage.setData({returnPicture:catPictures[currentPicture].image_url});
-    }else{
-      console.log('静止')
-    }
+  close_mask: function () {
+    this.setData({
+      showMask: false
+    })
   },
 
 })
