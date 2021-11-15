@@ -43,7 +43,6 @@ function showTopTip(that) {
 
 function getPage(that,pageNumber) 
 {
-	console.log("getpage")
 	$api.request("GET","/cats/"+that.data.cat_id+"/comments/",{"page_size":PGSIZE,"page":pageNumber},1)
 	.then(res=>{
 		//处理一下commentInfo

@@ -22,7 +22,7 @@
 </wux-tabbar>
 
 <wux-toptips id="wux-toptips" />
-<loading id="loading" hidden="{{loadingHidden}}">
+<loading hidden="{{loadingHidden}}">
 {{loadingText}}
 </loading>
 <view class="pageBody">

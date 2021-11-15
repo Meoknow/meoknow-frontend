@@ -132,7 +132,6 @@ Page({
     },
     //点击打开弹窗
     inputs: function(e){
-      console.log(e)
       var that = this
       util.commentAction.inputs(that,e)
     },	
@@ -178,8 +177,8 @@ Page({
             console.log("用户授权成功")
           })
           .catch(err=>{
-            console.error("用户授权失败")
-            console.error(err);
+            console.log("用户授权失败")
+            console.log(err);
           })
           this.setData({
             hasUserInfo: true

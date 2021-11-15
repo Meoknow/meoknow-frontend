@@ -1,2 +1,63 @@
-<!--pages/book/detail.wxml-->
-<text>pages/book/detail.wxml</text>
+<view class="container">
+  <view class="section g-wrap">
+    <view class="section-title"> 猫咪图鉴 </view>
+    <view class="grid-wrp">
+      <view class="grid-row">
+        <view class="grid-item">
+          <navigator url="../herolist/herolist?role=3"></navigator>
+          <text>三花</text>
+          <image src="../../img/role/tank.png"></image>
+        </view>
+        <view class="grid-item">
+          <navigator url="../herolist/herolist?role=1"></navigator>
+          <text>橘色</text>
+          <image src="../../img/role/warrior.png"></image>
+        </view>
+        <view class="grid-item">
+          <navigator url="../herolist/herolist?role=4"></navigator>
+          <text>C</text>
+          <image src="../../img/role/assassin.png"></image>
+        </view>
+      </view>
+      <view class="grid-row">
+        <view class="grid-item">
+          <navigator url="../herolist/herolist?role=2"></navigator>
+          <text>D</text>
+          <image src="../../img/role/mage.png"></image>
+        </view>
+        <view class="grid-item">
+          <navigator url="../herolist/herolist?role=5"></navigator>
+          <text>E</text>
+          <image src="../../img/role/archer.png"></image>
+        </view>
+        <view class="grid-item">
+          <navigator url="../herolist/herolist?role=6"></navigator>
+          <text>F</text>
+          <image src="../../img/role/support.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="section slider-container">
+    <view class="section-title">识图结果</view>
+    <scroll-view class="g-slider hero-slider" scroll-x="true">
+      <view class="g-slider-item" wx:for="{{ freehero }}">
+        <navigator url="../hero_detail/hero_detail?id={{ item.id }}"></navigator>
+        <view class="avatar">
+          <image src="http:{{ item.img }}"></image>
+        </view>
+        <text>{{ item.name }}</text>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="section g-wrap">
+    <view class="section-title">我的</view>
+    <view class="article-list">
+      <view class="article-list-item">
+        <navigator url="../terminology/terminology"></navigator>
+        <text>猫咪地图</text>
+        <image src="../../img/article/jargon.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
