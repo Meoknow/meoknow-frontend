@@ -89,14 +89,11 @@ html, body{ margin:0; height:100%; }
   width: 600rpx;
 }
 .myswiperNote{
-  position: absolute;
   z-index: 9;
+  position: relative;
   display: block;
-  top: 65%;
-  display: flex;
-  align-items: center;
   text-align: center;
-  justify-content: center; /** flex 属性， 水平居中**/
+  top: 65%;
   width: 600rpx;
   white-space:pre-wrap;
   font-family:"宋体", "楷体", serif;

@@ -235,7 +235,7 @@ Page({
     var cat = e.currentTarget.dataset.cat;
     console.log(cat.cat_id);
     wx.navigateTo({
-      url: "detail/detail?cat_id="+cat.cat_id
+      url: "/pages/book/detail/detail?cat_id="+cat.cat_id
     })
   }
   

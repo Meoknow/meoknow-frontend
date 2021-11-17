@@ -31,17 +31,17 @@
   <image class="backGround" src="../../image/origin.jpg" mode="aspectFill"/>
 
   <view class="modalDlg" wx:if="{{showMask}}">
-    <view class='close_mask' bindtap="close_mask">X</view>
+    <view class='close_mask' bindtap="close_mask">x</view>
     
     <swiper indicator-dots="true" class="myswiper" 
       autoplay="false" duration="500" indicator-active-color="rgb(128, 64, 0)" >
       <block wx:for="{{returnCatPictures}}" wx:key="cat_id">
         <swiper-item>
           <image class="myswiperItem" src="{{ item.img_url }}" mode="aspectFit"/>
-            <text class="myswiperNote">您拍的猫咪可能是
-{{item.name}}
+            <view class="myswiperNote">您拍的猫咪可能是
+<text style="color:#0000FF" bindtap="navi_to_detail" data-cat="{{item}}">{{item.name}}</text>
 得分{{item.confidence}}
-            </text>
+            </view>
         </swiper-item>
       </block>
     </swiper>
