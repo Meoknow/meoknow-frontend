@@ -154,6 +154,20 @@ Page({
         totalRequest=0;
         if(res.statusCode==200)//找到猫
         {
+          let requestres = res.data.data;
+          wx.navigateTo({
+            url: "/pages/recognize/reply",
+            events: {
+              replyCats: function(data) {
+                console.log(data)
+              }
+            },
+            success: function(res) {
+              // 通过eventChannel向被打开页面传送数据
+              res.eventChannel.emit('replyCats', { data: requestres})
+            }
+          })
+          /*
           let i;
           catPictures=[];
           totalRequest=res.data.data.cats.length;
@@ -167,7 +181,7 @@ Page({
             console.log(cat);
             console.log(cat_id);
             mypage.getCatInformation(cat_id,i,cat.confidence);//transform it into information and push to cat Pictures.
-          }
+          }*/
         }
        else mypage.verifyCatInformation();
        //否则没找到猫，catPictures为空

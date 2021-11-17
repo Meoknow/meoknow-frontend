@@ -1,56 +1,57 @@
 {
-    "pages": [
-        "pages/recognize/recognize",
-        "pages/book/book",
-        "pages/book/detail/detail",
-        "pages/index/index",
-        "pages/logs/logs",
-        "pages/my/my",
-        "pages/book/search/search",
-        "pages/book/detail"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#ebc7a4",
-        "navigationBarTitleText": "Meoknow",
-        "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-        "custom": true,
-        "color": "#dbdbdb",
-        "backgroundColor": "#333",
-        "selectedColor": "red",
-        "list": [
-            {
-                "pagePath": "pages/recognize/recognize",
-                "text": "识图"
-            },
-            {
-                "pagePath": "pages/book/book",
-                "text": "图鉴"
-            },
-            {
-                "pagePath": "pages/my/my",
-                "text": "我的"
-            }
-        ]
-    },
-    "usingComponents": {
-        "wux-icon": "/dist/icon/index",
-        "wux-badge": "/dist/badge/index",
-        "wux-tabbar": "/dist/tabbar/index",
-        "wux-tabbar-item": "/dist/tabbar-item/index",
-        "wux-cell-group": "/dist/cell-group/index",
-        "wux-cell": "/dist/cell/index",
-        "wux-button": "/dist/button/index",
-        "wux-row": "/dist/row/index",
-        "wux-col": "/dist/col/index",
-        "wux-image": "/dist/image/index",
-        "wux-popover": "/dist/popover/index",
-        "wux-toptips": "/dist/toptips/index",
-        "wux-landscape": "/dist/landscape/index",
-        "wux-animation-group": "/dist/animation-group/index"
-    },
-    "style": "v2",
-    "sitemapLocation": "sitemap.json"
+  "pages": [
+    "pages/recognize/recognize",
+    "pages/book/book",
+    "pages/book/detail/detail",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/my/my",
+    "pages/book/search/search",
+    "pages/book/detail",
+    "pages/recognize/reply"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ebc7a4",
+    "navigationBarTitleText": "Meoknow",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#dbdbdb",
+    "backgroundColor": "#333",
+    "selectedColor": "red",
+    "list": [
+      {
+        "pagePath": "pages/recognize/recognize",
+        "text": "识图"
+      },
+      {
+        "pagePath": "pages/book/book",
+        "text": "图鉴"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "wux-icon": "/dist/icon/index",
+    "wux-badge": "/dist/badge/index",
+    "wux-tabbar": "/dist/tabbar/index",
+    "wux-tabbar-item": "/dist/tabbar-item/index",
+    "wux-cell-group": "/dist/cell-group/index",
+    "wux-cell": "/dist/cell/index",
+    "wux-button": "/dist/button/index",
+    "wux-row": "/dist/row/index",
+    "wux-col": "/dist/col/index",
+    "wux-image": "/dist/image/index",
+    "wux-popover": "/dist/popover/index",
+    "wux-toptips": "/dist/toptips/index",
+    "wux-landscape": "/dist/landscape/index",
+    "wux-animation-group": "/dist/animation-group/index"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

@@ -98,13 +98,21 @@ Page({
       
         if(res.data.code==0)//get data success
         {
+          wx.setStorageSync("cats", res.data.data)
+          wx.getStorageInfo({
+            success (res) {
+              console.log(res.keys)
+              console.log(res.currentSize)
+              console.log(res.limitSize)
+            }
+          });
           var n = res.data.data.length;
           for(let i=0;i<n;i++)
             tmp.push(res.data.data[i]);
           console.log("loading to catpictures");
           for(let i=0;i<tmp.length;i++)
             console.log(tmp[i].name),tmp[i].img_url="http://"+tmp[i].img_url,tmp[i].url="detail/detail?cat_id"+tmp[i].cat_id;
-           that.setData({catPictures:tmp});
+          that.setData({catPictures:tmp});
         }
         else console.log("we find no cat_id");
       },

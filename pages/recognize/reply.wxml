@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="page__bd page__bd_spacing">
+    <block class="reply-page">
+      <view class="page__hd" style="flex-direction:column;">
+        <view class="top-user-image-hd">
+          <image class="top-user-image" src="{{userimage}}"></image>
+        </view>
+        <text class="reply-text-1">识别成功</text>
+        <text class="reply-text-2">您拍的猫咪可能是：</text>
+        <view class="reply-card" style="flex-direction:row;">
+          <view class="reply-card-left"> 
+            <text class="reply-card-name">{{rescats[current].name}}</text>
+            <text class="reply-card-score">{{rescats[current].confidence}}</text>
+            <text class="reply-text-3">点我查看ta的图鉴</text>
+          </view>
+          <view class="reply-card-right">
+            <image class="reply-card-image" src="{{rescats[current].img_url}}"></image>
+          </view>
+        </view>
+        <text class="reply-text-3">左右滑动查看其他结果</text>
+      </view>
+    </block>
+    <wux-pagination defaultCurrent="1" total="{{rescats.length}}" mode="pointer">
+    </wux-pagination>
+  </view>
+</view>
