@@ -61,11 +61,11 @@ html, body{ margin:0; height:100%; }
 }
 
 .modalDlg {
-  width: 600rpx;
-  height: 700rpx;
+  width: 500rpx;
+  height: 600rpx;
   position: absolute;
-  top: 50%;
-  left: 0;
+  top: 55%;
+  left: 50rpx;
   z-index: 5;
   margin: -370rpx 85rpx;
   background-color: rgb(248,248,248);
@@ -77,7 +77,7 @@ html, body{ margin:0; height:100%; }
 .myswiper{
   position: absolute;
   z-index: 8;
-  margin-top: 10%;
+  margin-top: 15%;
   height: 90%;
   width: 600rpx;
 }
@@ -97,7 +97,7 @@ html, body{ margin:0; height:100%; }
   width: 600rpx;
   white-space:pre-wrap;
   font-family:"宋体", "楷体", serif;
-  font-size:35rpx;
+  font-size:32rpx;
   color: #8E2323
 }
 .pageBody {
@@ -122,5 +122,5 @@ html, body{ margin:0; height:100%; }
   position: relative;
   left: 40%;
   /* top: -82%; */
-  font-size: 32rpx;
+  font-size: 40rpx;
 }

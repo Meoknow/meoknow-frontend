@@ -34,5 +34,6 @@ App({
   },
   globalData: {
     server: "http://39.104.59.169:3000",
+//      server: "http://localhost:5000",
   },
 })

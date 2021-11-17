@@ -206,7 +206,7 @@ Page({
 //            mypage.updatePhotos(myBase64Img);
 //            mypage.addCatInformation(myBase64Img);
 
-            /*totalRequest=3;
+/*            totalRequest=3;
             for(i=0;i<totalRequest;++i)
             catPictures.push(1);
             mypage.getCatInformation(1,0,0.5);

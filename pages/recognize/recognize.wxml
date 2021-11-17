@@ -38,9 +38,9 @@
       <block wx:for="{{returnCatPictures}}" wx:key="cat_id">
         <swiper-item>
           <image class="myswiperItem" src="{{ item.img_url }}" mode="aspectFit"/>
-            <view class="myswiperNote">您拍的猫咪可能是
-<text style="color:#0000FF" bindtap="navi_to_detail" data-cat="{{item}}">{{item.name}}</text>
-得分{{item.confidence}}
+            <view class="myswiperNote">{{item.name}}
+<text bindtap="navi_to_detail" data-cat="{{item}}">查看图鉴</text><wux-icon bindtap="navi_to_detail" data-cat="{{item}}" wux-class="icon" type="ios-search" size="18" />
+得分 {{item.confidence}}
             </view>
         </swiper-item>
       </block>
