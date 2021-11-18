@@ -62,8 +62,15 @@ Page({
     }
     else {
       mypage.setData({returnCatPictures:catPictures});
+      app.globalData.returnCatPictures=catPictures;
+      console.log(app.globalData.returnCatPictures);
       console.log('catPicturelength!=0');
       mypage.setData({showMask:true});//showing cats
+
+      wx.navigateTo({
+        url: "/pages/recognize/result"
+      })
+
     }
   },
   getCatInformation(cat_id,index,confidence)
@@ -192,6 +199,7 @@ Page({
           filePath: res.tempFilePaths[0],
           encoding: "base64",//base64格式解码
           success: function(data) {
+            app.globalData.recognizeCatPicture=res.tempFilePaths[0];
             let myBase64Img;
             let suffix;
             let i;
@@ -235,7 +243,7 @@ Page({
     var cat = e.currentTarget.dataset.cat;
     console.log(cat.cat_id);
     wx.navigateTo({
-      url: "/pages/book/detail/detail?cat_id="+cat.cat_id
+      url: "../book/detail/detail?cat_id="+cat.cat_id
     })
   }
   

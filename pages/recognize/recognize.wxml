@@ -30,6 +30,7 @@
   <image class="myButtonImage" src="../../image/camera.jpg"  bindtap="showActionSheet"/>
   <image class="backGround" src="../../image/origin.jpg" mode="aspectFill"/>
 
+  <!--
   <view class="modalDlg" wx:if="{{showMask}}">
     <view class='close_mask' bindtap="close_mask">x</view>
     
@@ -46,7 +47,9 @@
       </block>
     </swiper>
   </view>
+  -->
 </view>
 
+<!--
 <view class="mask" wx:if="{{showMask}}"></view>
-
+-->

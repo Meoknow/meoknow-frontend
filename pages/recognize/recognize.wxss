@@ -60,20 +60,6 @@ html, body{ margin:0; height:100%; }
   color: #aaa;
 }
 
-.modalDlg {
-  width: 500rpx;
-  height: 600rpx;
-  position: absolute;
-  top: 55%;
-  left: 50rpx;
-  z-index: 5;
-  margin: -370rpx 85rpx;
-  background-color: rgb(248,248,248);
-  border-radius: 36rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .myswiper{
   position: absolute;
   z-index: 8;

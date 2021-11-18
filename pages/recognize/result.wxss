@@ -1,0 +1,71 @@
+/**index.wxss**/
+html, body{ margin:0; height:100%; }
+
+.container1 {
+  width: 400rpx;
+  margin: -40rpx 180rpx;
+}
+.container2 {
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 0rpx 40rpx;
+}
+
+.divider {
+  opacity: 50%;
+  position: static;
+  border-bottom: 5rpx dashed gray;
+  width: 100%;
+  z-index: -1;
+  margin: 0rpx 0rpx;
+}
+.noteSuccess {
+  position: static;
+  border: 4rpx solid rgba(128,128,128,0.5);
+  margin: 20rpx 250rpx;
+  height: 10%;
+  padding: 20rpx 30rpx;
+  text-align: center;
+  color: #238E23;
+  font-weight: bold;
+  z-index: 1;
+}
+
+
+.myswiper{
+  position: absolute;
+  z-index: 8;
+  margin-top: 15%;
+  height: 45%;
+  width: 100%;
+}
+.myswiperItem{
+  position: absolute;
+  z-index: 9;
+  margin-top: 20rpx;
+  margin-left: -230rpx;
+  height: 250rpx;
+}
+.myswiperNote{
+  z-index: 9;
+  position: static;
+  margin: 20rpx 20rpx;
+  margin-right: 400rpx;
+  padding: 0rpx 30rpx;
+  border: 5rpx dashed rgba(128,128,128,0.5);
+  font-family:"宋体", "楷体", serif;
+  font-size:32rpx;
+  color: #D19275;
+}
+.myswiperNote2{
+  z-index: 9;
+  position: static;
+  margin: 30rpx 0rpx 30rpx 30rpx;
+  margin-right: 400rpx;
+  font-family:"宋体", "楷体", serif;
+  font-size:32rpx;
+  color: #8E2323;
+}

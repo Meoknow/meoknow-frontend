@@ -1,0 +1,31 @@
+<!--recognize.wxml-->
+<!--recognize.wxml--> 
+
+<image class="container1" mode="aspectFit" src="{{recognizeCatPicture}}"/>
+
+<view style="position:relative;height:40%">
+  <view class="divider" />
+  <view class="noteSuccess">识别成功 √</view>
+</view>
+
+<view class="container2">
+  <view style="margin:30rpx; color:rgba(128,128,128,0.5);">您拍的猫咪可能是:</view>
+  <view style="border: 5rpx dashed rgba(128,128,128,0.5);">
+  <swiper indicator-dots="true" style
+    autoplay="false" duration="500" indicator-active-color="rgb(128, 64, 0)" >
+    <block wx:for="{{returnCatPictures}}" wx:key="cat_id">
+      <swiper-item>
+        <image class="myswiperItem" src="{{ item.img_url }}" mode="aspectFit"/>
+        <view class="myswiperNote">
+<view style="font-size: 80rpx;">{{item.name}}</view>
+<view style="font-size: 40rpx;">得分 {{item.confidence}}</view>
+        </view>
+        <view class="myswiperNote2" bindtap="navi_to_detail">
+        <text  data-cat="{{item}}">点我查看ta的图鉴</text><wux-icon data-cat="{{item}}" wux-class="icon" type="ios-search" size="18" />
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  </view>
+  <view style="margin-top:30rpx; color:rgba(128,128,128,0.5);">划动查看其它结果</view>
+</view>

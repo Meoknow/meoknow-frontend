@@ -7,7 +7,8 @@
         "pages/logs/logs",
         "pages/my/my",
         "pages/book/search/search",
-        "pages/book/detail"
+        "pages/book/detail",
+        "pages/recognize/result"
     ],
     "window": {
         "backgroundTextStyle": "light",
