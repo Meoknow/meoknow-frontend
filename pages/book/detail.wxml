@@ -61,3 +61,37 @@
     </view>
   </view>
 </view>
+
+<view class="main">
+    <view class="goods-box">
+        <image src="{{goods.image}}" class="goods-thumb"></image>
+        
+        <navigator open-type="switchTab" url="../cart/cart">
+            <view class="carts-icon {{scaleCart?'on':''}}">
+                <image src="/image/cart2.png"></image>
+                <text class="carts-icon-num" wx:if="{{hasCarts}}">{{totalNum}}</text>
+            </view>
+        </navigator>
+        
+        <view class="goods-operation">
+            <text class="goods-operation-num">名字  {{num}}</text>
+            <text class="goods-operation-add" bindtap="addCount">+</text>
+            <text class="goods-to-cart" bindtap="addToCart">查看猫咪地图</text>
+            <image src="/image/cart1.png"  class="goods-cart-img" bindtap="addToCart"></image>
+        </view>
+        <image wx:if="{{show}}" src="/image/cart1.png" class="to-carts-icon"></image>
+        <view class="goods-stock">{{goods.stock}}</view>
+        <view class="goods-title">{{goods.title}}</view>
+        <view class="goods-price">￥ {{goods.price}}</view>
+    </view>
+    <view class="goods-tab-box">
+        <view class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">猫咪信息</view>
+        <view class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">评论区</view>
+        <view class="goods-tab-nav {{curIndex === 2 ?'on':''}}" bindtap="bindTap" data-index="2">猫咪图片</view>
+        <view class="goods-content">
+            <view wx:if="{{curIndex === 0}}">{{goods.detail}}</view>
+            <view wx:if="{{curIndex === 1}}">{{goods.parameter}}</view>
+            <view wx:if="{{curIndex === 2}}">{{goods.service}}</view>
+        </view>
+    </view>
+</view>
