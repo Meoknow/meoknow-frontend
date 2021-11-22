@@ -21,26 +21,6 @@ App({
             console.log(res.code);
             console.log(err);
           })
-          
-          /*
-          console.log(res.code);
-          wx.request({
-            url: "http://39.104.59.169:3000/session",
-            data: {
-              "code":res.code
-            },
-            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-            //header: {}, // 设置请求的 header
-            success: function(res){
-              console.log("success");
-              console.log(res.data.data.token);
-              wx.setStorageSync('token',res.data.data.token);
-            },
-            fail: function(res) {
-              console.log("login error");
-              console.log(err);
-            },
-          })*/
       }
     })
   },

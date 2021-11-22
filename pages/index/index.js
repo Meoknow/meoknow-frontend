@@ -43,7 +43,6 @@ Page({
 			//cat_id=1
 		$api.request("GET","/cats/"+cat_id+"/comments/",{"page_size":PGSIZE,"page":1},1)
 			.then(res=>{
-				/*
 				console.log("success on comments");
 				console.log(res);
 				//处理一下commentInfo
@@ -67,7 +66,7 @@ Page({
 					x.children=[];
 					//x.children=...
 					commentInfo.list.append(x);
-				}*/
+				}
 				wx.setStorageSync('commentInfo', commentInfo);
 				app.globalData.commentInfo = commentInfo;
 				that.setData({
@@ -144,5 +143,27 @@ Page({
 		var that = this
 		util.commentAction.thumbsupAct(that,e)
 	},
+
+	getUserProfile(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '用于发布评论', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+				console.log(res.userInfo);
+				$api.request("POST","/userinfo",{"nickname":res.userInfo.nickName,"avatar":res.userInfo.avatarUrl})
+				.then(res=>{
+					console.log("用户授权成功")
+				})
+				.catch(err=>{
+					console.log("用户授权失败")
+					console.log(err);
+				})
+        this.setData({
+          userInfo: res.userInfo,
+					hasUserInfo: true
+        })
+      }
+    })
+  },
 	/*************************评论/点赞组件->结束***************************/
 })

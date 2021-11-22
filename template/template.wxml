@@ -6,18 +6,6 @@
 -->
 <block>
 <view class="commentmut">
-	<view class="note">
-		<view>
-			<view class="note-graceful-button">
-				<view class="line-container">
-					<view class="line"></view>
-					<p class="content"><span>点赞赚钻</span><span class="special">最高日赚数百元</span></p>
-				</view>
-				<view class="this-is-graceful-btn"><i class="iconfont ic-H-like"></i></view>
-				<span class="graceful-words"> 赞 <span class="numbers">(0)</span></span>
-			</view>
-		</view>
-	</view>
 		
 	<view id="comment-main">
 		<view class="margin-top"></view>
@@ -46,10 +34,12 @@
 					</view>
 					<view class="comment-extra">
 						<span class="floor">{{index+1}}楼</span>{{co.create_time}}
+						<!-- 回复和点赞模块，现在先注释掉
 						<view class="social-wrap">
 							<view class="button reply-btn" data-pid="{{co.id}}" data-aid="{{co.aid}}" data-nav_id="{{co.nav_id}}" data-type="{{co.type}}" catchtap="replayAct">回复</view>
 							<view class="button" data-id="{{co.id}}" data-aid="{{co.aid}}" data-pid="{{co.pid}}" data-nav_id="{{co.nav_id}}" data-isthumbsup="{{co.isThumbsup}}" data-type="{{co.type}}" catchtap="thumbsupAct">点赞</view>
 						</view>
+						-->
 					</view>
 					<block wx:if="{{co.children}}">
 					<view class="sub-comment-list">
@@ -121,7 +111,10 @@
 							<input name="nav_id" style="display:none" value="{{comment_bInfo.nav_id}}" />
 							<input name="unionID" style="display:none" value="{{comment_bInfo.unionID}}" />
 							<input name="avatar" style="display:none" value="{{comment_bInfo.avatar}}" />
-							<button type="warn" disabled="{{disabled}}" form-type="submit">提交</button>
+							
+							<button wx:if="{{!hasUserInfo}}" type="warn" bindtap="getUserProfile">授权</button>
+							<button wx:else type="warn" disabled="{{disabled}}" form-type="submit">提交</button>
+							
 							<button type="default" form-type="reset">重置</button>
 						</view>
 					</form>
