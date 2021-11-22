@@ -1,11 +1,11 @@
 // index.js
 // 获取应用实例
 const app = getApp()
+const $api= require("../../utils/api.js");
 import { $wuxToptips } from '../../dist/index'
 var catPictures;//saving Get cat informaiton data, use data.image_url to get url
 var totalRequest;
 var server=app.globalData.server;
-
 Page({
   data: {
     returnCatPictures: "../../image/origin.jpg",
@@ -69,32 +69,22 @@ Page({
   getCatInformation(cat_id,index,confidence)
   {
     let mypage=this;
-    wx.request({
-      "url": server+'/cats/'+cat_id,
-//      "url": 'http://localhost:5000/cats/',
-      "method": 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      //header: {}, // 设置请求的 header
-      success: function(res){
-//        console.log(res.data.data[0]);
+    $api.request("GET","/cats/"+cat_id,"")
+      .then(res=>{
         console.log("request =end");
-        if(res.data.code==0)//find cat_id
-        {
-          catPictures[index]=res.data.data;
-          catPictures[index].confidence=confidence;
-          catPictures[index].img_url="http://"+catPictures[index].img_url;
-        }
-        else console.log("we find no cat_id"); 
+        catPictures[index]=res.data.data;
+        catPictures[index].confidence=confidence;
+        catPictures[index].img_url="http://"+catPictures[index].img_url;
         --totalRequest;
         if(totalRequest==0)
           mypage.verifyCatInformation();
-      },
-      fail: function(res) {
-        console.log(res.errMsg);
+      })
+      .catch(err=>{
+        console.log("we find no cat_id"); 
         --totalRequest;
         if(totalRequest==0)
           mypage.verifyCatInformation();
-      },
-     })
+      })
   },
   updatePhotos(myBase64Img)
   {
@@ -114,7 +104,7 @@ Page({
         console.log('build photo information success');
       },
       fail: function(res) {
-        console.log("res.errMsg");
+        console.log(res.errMsg);
       },
      })
   },
@@ -143,39 +133,33 @@ Page({
   postMyImg(myBase64Img)
   {
     let mypage=this;
-    wx.request({
-      url: server+'/identify/',
-      data: {"image":myBase64Img},
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      //header: {}, // 设置请求的 header
-      success: function(res){
-      // 识图成功
-        console.log("post success");
-        totalRequest=0;
-        if(res.statusCode==200)//找到猫
+    $api.request("POST","/identify/",{"image":myBase64Img})
+    .then(res=>{
+      console.log("post success");
+      totalRequest=0;
+      if(res.statusCode==200)//找到猫
+      {
+        let i;
+        catPictures=[];
+        totalRequest=res.data.data.cats.length;
+        console.log(totalRequest);
+        for(i=0;i<totalRequest;++i)
+        catPictures.push(1);
+        for(i=0;i<res.data.data.cats.length;++i)
         {
-          let i;
-          catPictures=[];
-          totalRequest=res.data.data.cats.length;
-          console.log(totalRequest);
-          for(i=0;i<totalRequest;++i)
-          catPictures.push(1);
-          for(i=0;i<res.data.data.cats.length;++i)
-          {
-            let cat=res.data.data.cats[i];
-            let cat_id=cat.cat_id;//get cat_id
-            console.log(cat);
-            console.log(cat_id);
-            mypage.getCatInformation(cat_id,i,cat.confidence);//transform it into information and push to cat Pictures.
-          }
+          let cat=res.data.data.cats[i];
+          let cat_id=cat.cat_id;//get cat_id
+          console.log(cat);
+          console.log(cat_id);
+          mypage.getCatInformation(cat_id,i,cat.confidence);//transform it into information and push to cat Pictures.
         }
-       else mypage.verifyCatInformation();
-       //否则没找到猫，catPictures为空
-      },
-      fail: function(res) {
-        console.log(res.errMsg);
-      },
-     })
+      }
+      else mypage.verifyCatInformation();
+      //否则没找到猫，catPictures为空
+    })
+    .catch(err=>{
+      console.log(err.errMsg);
+    })
   },
   showActionSheet() {
     console.log("aa");
