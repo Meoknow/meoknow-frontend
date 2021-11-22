@@ -45,16 +45,14 @@ Page({
         success() {},
     })
   },
-  verifyCatInformation()
+  verifyCatInformation()//检验并保留合法的请求猫咪信息，存在有效信息则唤醒返回结果
   {
     let mypage=this;
     console.log("start verify");
     let i;
     for(i=catPictures.length;i>=0;--i)
       if(catPictures[i]==1)
-      {
         catPictures.splice(i,1);
-      }
 
     if(catPictures.length==0) {
       console.log('catPictureLength=0');
@@ -66,7 +64,7 @@ Page({
       mypage.setData({showMask:true});//showing cats
     }
   },
-  getCatInformation(cat_id,index,confidence)
+  getCatInformation(cat_id,index,confidence)//请求获得cat_id的猫信息,index为本次识图中返回的猫index,confidence为得分
   {
     let mypage=this;
     $api.request("GET","/cats/"+cat_id,"")
@@ -189,7 +187,6 @@ Page({
             myBase64Img = 'data:image/'+suffix+';base64,'+data.data;//解码后放在这
 //            mypage.updatePhotos(myBase64Img);
 //            mypage.addCatInformation(myBase64Img);
-
 /*            totalRequest=3;
             for(i=0;i<totalRequest;++i)
             catPictures.push(1);

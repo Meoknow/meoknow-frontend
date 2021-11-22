@@ -43,8 +43,8 @@ Page({
 			//cat_id=1
 		$api.request("GET","/cats/"+cat_id+"/comments/",{"page_size":PGSIZE,"page":1},1)
 			.then(res=>{
+				/*
 				console.log("success on comments");
-				
 				console.log(res);
 				//处理一下commentInfo
 				var commentInfo;
@@ -67,17 +67,37 @@ Page({
 					x.children=[];
 					//x.children=...
 					commentInfo.list.append(x);
-				}
-
+				}*/
 				wx.setStorageSync('commentInfo', commentInfo);
 				app.globalData.commentInfo = commentInfo;
 				that.setData({
 					commentInfo: wx.getStorageSync('commentInfo')
 				})
 			})
+
 			.catch(err=>{
-				console.log("err on comments");
-				console.log(err);
+				console.log("err on comments,start debugging");
+				let commentInfo={
+
+					"num":1,
+					"list":[{
+						"avatar":"../../image/camera.jpg",
+						"content":"get comments fail,warning",
+						"id":1,
+						"aid":3,
+						"nav_id":0,
+						"type":0,
+						"pid":1,
+						"isThumbsup":1,
+						"children": [],
+					}],
+				};
+					console.log(commentInfo);
+				wx.setStorageSync('commentInfo', commentInfo);
+				app.globalData.commentInfo = commentInfo;
+				that.setData({
+					commentInfo: wx.getStorageSync('commentInfo')
+				})
 			})
 		
 		//	获取评论+++++++++++++++++++完整方式==结束======================		
