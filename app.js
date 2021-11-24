@@ -14,6 +14,7 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         $api.request("GET","/session",{"code":res.code,})
           .then(res=>{
+            console.log("my login token is",res.data.data.token);
             wx.setStorageSync('token',res.data.data.token);
           })
           .catch(err=>{

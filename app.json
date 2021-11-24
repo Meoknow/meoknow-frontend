@@ -12,7 +12,8 @@
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#ebc7a4",
         "navigationBarTitleText": "Meoknow",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
     },
     "tabBar": {
         "custom": true,

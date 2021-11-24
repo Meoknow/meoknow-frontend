@@ -41,31 +41,34 @@ Page({
 			}, "GET");*/
 		
 			//cat_id=1
+		console.log(wx.getStorageSync('commentInfo'));
 		$api.request("GET","/cats/"+cat_id+"/comments/",{"page_size":PGSIZE,"page":1},1)
 			.then(res=>{
-				console.log("success on comments");
-				console.log(res);
 				//处理一下commentInfo
-				var commentInfo;
-				commentInfo.num=res.data.comments.length();
-				commentInfo.list=[];
+				let commentInfo={//获取全部评论信息
+					list:[],
+					num:res.data.length,
+				};
+
 				let i;
 				for(i=0;i<commentInfo.num;++i)
 				{
-					let y=res.data.comments[i];
-					let x;
-					x.avatar="../../image/camera.jpg";//for now
-					x.content=y.content;
-					x.pic=y.images;
-					x.id=y.comment_id;
-					x.aid=cat_id;//cat_id!
-					x.nav_id=0;//?
-					x.type=0;//?
-					x.pid=x.id;//or 0?
-					x.isThumbsup=y.is_liked;
-					x.children=[];
-					//x.children=...
-					commentInfo.list.append(x);
+					let y=res.data[i];
+					let x={//获取评论信息
+//						"avatar":"../../image/camera.jpg",//for now
+						"avatar":y.avatar,
+						"content":y.content,
+						"pic":y.images,
+						"id":y.comment_id,
+						"aid":cat_id,//cat_id!
+						"nav_id":0,//?不知道怎么填
+						"type":0,//?不知道怎么填
+						"pid":y.comment_id,//?不太清楚填没填对
+						"isThumbsup":y.is_liked,
+						"children":[],
+						//x.children=...
+					};
+					commentInfo.list.push(x);
 				}
 				wx.setStorageSync('commentInfo', commentInfo);
 				app.globalData.commentInfo = commentInfo;
@@ -73,15 +76,15 @@ Page({
 					commentInfo: wx.getStorageSync('commentInfo')
 				})
 			})
-
 			.catch(err=>{
 				console.log("err on comments,start debugging");
+				console.log(err);
 				let commentInfo={
 
 					"num":1,
 					"list":[{
 						"avatar":"../../image/camera.jpg",
-						"content":"get comments fail,warning",
+						"content":"if you see this,something wrong occurred",
 						"id":1,
 						"aid":3,
 						"nav_id":0,
@@ -159,7 +162,6 @@ Page({
 					console.log(err);
 				})
         this.setData({
-          userInfo: res.userInfo,
 					hasUserInfo: true
         })
       }

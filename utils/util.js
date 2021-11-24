@@ -275,7 +275,14 @@ let commentAction = {
 		$api.request("POST","/cats/"+cat_id+"/comments/",x,1)
 		.then(res=>{
 			if(res.code==0)
+			{
 				console.log("submit comment success");
+				wx.startPullDownRefresh({
+					success: (res) => {
+						console.log("success on refresh")
+					},
+				})
+			}
 			else 
 				console.log("submit fail1");
 		})
