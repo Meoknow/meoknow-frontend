@@ -29,7 +29,6 @@ function request(method, url, data,mode=0) {
             },
             fail(err) {
                 //请求失败
-                console.log(header);
                 reject(err)
             }
         })

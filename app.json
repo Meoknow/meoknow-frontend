@@ -2,6 +2,7 @@
     "pages": [
         "pages/recognize/recognize",
         "pages/map/index",
+        "pages/map/sudo/map",
         "pages/index/index",
         "pages/book/book",
         "pages/book/detail/detail",
@@ -32,7 +33,7 @@
                 "text": "图鉴"
             },
             {
-                "pagePath": "pages/recognize/recognize",
+                "pagePath": "pages/map/sudo/map",
                 "text": "地图"
             },
             {
