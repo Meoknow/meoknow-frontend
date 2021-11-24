@@ -1,42 +1,10 @@
 <!--index.wxml-->
-<!--index.wxml--> 
+<import src="/template/template.wxml"/>
+<!----new-comment&thumbsup---->
+<view class="widyBox">
+	<template is="replayThumbsup" data="{{commentInfo, click, opt, currentWordNumber, disabled, tempFilePaths, imgs1, comment_bInfo, hasUserInfo, userInfo, userNickname}}"/>
+</view>
 
-<view class="debugger">this is index</view>>
+<!----new-comment&thumbsup---->
 
-<wux-tabbar defaultCurrent="0" theme="assertive" position="bottom">
-  <wux-tabbar-item title="识图" bindtap="cdToRecognize">
-      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-  </wux-tabbar-item>
-  <wux-tabbar-item title="图鉴" bindtap="cdToBook">
-      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-  </wux-tabbar-item>
-  <wux-tabbar-item title="我的" bindtap="cdToMy">
-      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
-      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
-  </wux-tabbar-item>
-</wux-tabbar>
-
-<view class="container"> 
-  <view class="userinfo"> 
-    <block wx:if="{{canIUseOpenData}}"> 
-      <view class="userinfo-avatar" bindtap="bindViewTap"> 
-        <open-data type="userAvatarUrl"></open-data> 
-      </view> 
-      <open-data type="userNickName"></open-data> 
-    </block> 
-    <block wx:elif="{{!hasUserInfo}}"> 
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button> 
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> 
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view> 
-    </block> 
-    <block wx:else> 
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image> 
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text> 
-    </block> 
-  </view> 
-  <view class="usermotto"> 
-    <text class="user-motto">{{motto}}</text> 
-  </view> 
-</view> 
+<template is="copyright" data="{{copyright}}"/>

@@ -1,10 +1,9 @@
 {
     "pages": [
+        "pages/index/index",
         "pages/recognize/recognize",
         "pages/book/book",
         "pages/book/detail/detail",
-        "pages/index/index",
-        "pages/logs/logs",
         "pages/my/my",
         "pages/book/search/search",
         "pages/book/detail"
@@ -13,7 +12,8 @@
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#ebc7a4",
         "navigationBarTitleText": "Meoknow",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
     },
     "tabBar": {
         "custom": true,
