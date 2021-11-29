@@ -1,0 +1,181 @@
+/**--------------------------------replay and thumbsUp Start----------------------------------**/
+/***thumbsUp***/
+.commentmut .note{background-color:#fff;}
+.commentmut .note-graceful-button{margin:15px 0 26px;text-align:center}
+.commentmut .note-graceful-button .line-container{position:relative;height:31px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+.commentmut .note-graceful-button .line-container .line{position:absolute;width:100%;top:15px;height:1px;background-color:#ddd;z-index:0}
+.commentmut .note-graceful-button .line-container .content{display:inline-block;margin:0 auto;position:relative;z-index:1;font-size:14px;line-height:31px;padding:0 10px;background-color:#fff}
+.commentmut .note-graceful-button .line-container .content{background-color:#fff}
+.commentmut .note-graceful-button .line-container .content span{display:inline-block;vertical-align:middle;font-size:16px;margin-right:5px;font-weight:500;line-height:22px;color:#666}
+.commentmut .note-graceful-button .line-container .content .special{color:#ea6f5a}
+.commentmut .note-graceful-button .this-is-graceful-btn{width:60px;height:60px;line-height:60px;text-align:center;margin:12px auto 3px;border-radius:50%}
+.commentmut .note-graceful-button .this-is-graceful-btn.is-active i{color:#ea6f5a}
+.commentmut .note-graceful-button .this-is-graceful-btn i{color:#888;font-size:60px}
+.commentmut .note-graceful-button .graceful-words{font-size:13px;color:#888}
+.commentmut .note-graceful-button .graceful-words.is-active{color:#ea6f5a}
+.commentmut .note-graceful-button .graceful-words .numbers{font-size:10px}
+/***thumbsUp***/
+
+.commentmut #comment-main{position:relative;margin-left:0;margin-right:0;background-color:#fff}
+.commentmut #comment-main .margin-top{height:10px;background-color:#f5f5f5;width:100%;}
+.commentmut #comment-main .top-title {padding:15px 18px 10px; border-bottom:none; margin-left:0; margin-right:0; font-size:16px; font-weight:700; color:#545454;}
+.commentmut #comment-main .top-title .write-comment{float:right;color:#ea6f5a;line-height:22px;font-size:14px}
+.commentmut #comment-main .comments-wrap>.comment-item{border-bottom: 1px solid; border-color: #f0f0f0;}
+.commentmut #comment-main .comments-wrap>.comment-item:last-child{border-bottom:none}
+.commentmut #comment-main .comment-open-app-btn-wrap{text-align:center;padding-bottom:20px;margin-top:20px}
+.commentmut #comment-main .comment-open-app-btn-wrap .comment-open-app-btn{border:2px solid #ea6f5a;color:#ea6f5a;background-color:transparent;border-radius:4px;text-align:center;width:250px;height:45px;padding:10px 30px;font-size:16px}
+.commentmut #comment-main .emoji{vertical-align:sub}
+.commentmut #comment-main .has-more-comment{padding:16px 0;font-size:15px;color:#969696;text-align:center;background-color:transparent}
+.commentmut #comment-main .comment-reply-drawer{padding:15px}
+.commentmut #comment-main .comment-reply-drawer .control{text-align:right}
+.commentmut #comment-main .comment-reply-drawer .control .button{margin-left:15px;width:80px;height:35px;font-size:17px;line-height:35px}
+.commentmut #comment-main .comment-reply-drawer .control .cancel{color:#999}
+.commentmut #comment-main .comment-reply-drawer .control .submit{background-color:#42c02e;color:#fff;border-radius:4px}
+.commentmut #comment-main .comment-wrapper .commentSubmit{width:100%;}
+.commentmut #comment-main .comment-wrapper .commentSubmit .conts{width:100%;}
+.commentmut #comment-main .comment-wrapper textarea{padding:15rpx; width:calc(100% - 36rpx); height:150px; font-size:14px; line-height:1.5; background-color:transparent; color:#333}
+
+.commentmut #comment-main .comment-wrapper .commentSubmit .btn-area button{width:44%; margin:0 3%; font-size:16px; float:left;}
+.commentmut #comment-main .comment-wrapper .commentSubmit .btn-area button[type=warn]{color:#fff;}
+.commentmut #comment-main .comment-wrapper .commentSubmit .btn-area button[type=default]{color:#555;}
+
+.commentmut #comment-main .comment-wrapper textarea{color:#555}
+.commentmut #comment-main .comment-wrapper .control{position:absolute;bottom:15px;right:15px}
+.commentmut #comment-main .no-content{padding:40px 0;font-size:14px;color:#969696;text-align:center;background-color:#fff}
+.commentmut #comment-main .no-content{background-color:#3f3f3f}
+.commentmut #comment-main .no-content img{padding-bottom:10px;width:140px}
+.commentmut #comment-main .no-content .button{color:#3194d0}
+
+.commentmut .comment-item .main .comment-content{word-break:break-word!important;}
+.commentmut .comment-item{padding-top:15px;padding-left:18px}
+.commentmut .comment-item .user-avatar{float:left;margin-right:10px}
+.commentmut .comment-item .main{overflow:hidden}
+.commentmut .comment-item .main .comment-user{margin-bottom:6px}
+.commentmut .comment-item .main .comment-user .nickname-wrap{overflow:hidden}
+.commentmut .comment-item .main .comment-user .nickname-wrap .nickname{font-size:16px;font-weight:700;vertical-align:middle;color:#484848}
+.commentmut .comment-item .main .comment-user .nickname-wrap .label{padding:1px 2px;font-size:12px;color:#ea6f5a;border:1px solid #ea6f5a;border-radius:3px;vertical-align:middle;margin-left:5px}
+.commentmut .comment-item .main .comment-user .nickname-wrap img{width:18px;height:18px;vertical-align:middle;margin-left:5px}
+.commentmut .comment-item .main .comment-content{font-size:16px;line-height:1.7;padding-right:18px;color:#484848}
+.commentmut .comment-item .main .comment-content>image{width:100%;margin-bottom:10rpx;}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-text>image{width:100%;margin-bottom:10rpx;}
+.commentmut .comment-item .main .comment-images{margin-top:8px;margin-bottom:8px;position:relative;font-size:0}
+.commentmut .comment-item .main .comment-images .image{position:relative;border-radius:2px;background-position:50%;background-repeat:no-repeat;overflow:hidden}
+.commentmut .comment-item .main .comment-images .image:not(:nth-child(3n)){margin-right:2%}
+.commentmut .comment-item .main .comment-images .image:nth-child(n+4){margin-top:2%}
+.commentmut .comment-item .main .comment-images .image.is-long:after{content:"\957F\56FE";position:absolute;bottom:0;margin-left:-22px;width:44px;height:28px;font-size:18px;text-align:center;line-height:28px;background-color:#2f2f2f;opacity:.5;color:#fff;-webkit-transform:scale(.5);-ms-transform:scale(.5);transform:scale(.5);-webkit-transform-origin:left bottom;-ms-transform-origin:left bottom;transform-origin:left bottom}
+.commentmut .comment-item .main .comment-images .one-image.is-long{height:0;padding-top:67%;min-width:33%;-webkit-background-size:33% 33%;background-size:33%;background-position:0}
+.commentmut .comment-item .main .comment-images .one-image.is-long:after{left:33%}
+.commentmut .comment-item .main .comment-images .one-image.is-normal{height:98px;width:100%;-webkit-background-size:contain;background-size:contain;background-position:0}
+.commentmut .comment-item .main .comment-images .many-image{-webkit-background-size:cover;background-size:cover;display:inline-block;height:0;width:32%;padding-top:32%}
+.commentmut .comment-item .main .comment-images .many-image:after{left:100%}
+.commentmut .comment-item .main .comment-images .mask{position:absolute;right:0;top:0;height:100%;width:32%;border-radius:2px;background-color:rgba(47,47,47,.6);overflow:hidden;pointer-events:none}
+.commentmut .comment-item .main .comment-images .mask span{font-size:15px;color:#fff;position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:100%;text-align:center}
+.commentmut .comment-item .main .comment-extra{font-size:12px;height:20px;line-height:20px;color:#b1b1b1;margin-top:5px;margin-bottom:15px}
+.commentmut .comment-item .main .comment-extra .floor{margin-right:4px}
+.commentmut .comment-item .main .comment-extra .social-wrap{float:right;height:20px;margin-right:18px}
+.commentmut .comment-item .main .comment-extra .social-wrap .button{margin-left:25px;color:#b1b1b1; /*width:45px;*/ float:left;}
+.commentmut .comment-item .main .comment-extra .social-wrap .button .icoX{margin-right:5px;color:#b1b1b1; width:20px; float:left;}
+.commentmut .comment-item .main .comment-extra .social-wrap .button .icoX image{width:100%; max-width:20px; height:100%;}
+.commentmut .comment-item .main .comment-extra .social-wrap .button>image{width:100%; max-width:20px; height:100%;}
+.commentmut .comment-item .main .comment-extra .social-wrap i{font-size:19px;vertical-align:middle}
+.commentmut .comment-item .main .comment-extra .social-wrap span{vertical-align:middle;font-size:13px;margin-right:3px}
+.commentmut .comment-item .main .comment-extra .social-wrap .ic-icon_comment_like_active,.comment-item .main .comment-extra .social-wrap span.active{color:#ea6f5a}
+.commentmut .comment-item .main .more-sub-comment{display:block;font-size:14px;font-weight:500;color:#3194d0;border-top:1px solid;width:100%;padding:20px 0;text-align:left;border-color:#e6e6e6}
+.commentmut .comment-item .main .more-sub-comment{border-color:#1f1f1f}
+.commentmut .avatar{position:relative;background-color:transparent;-webkit-transition:.4s linear;-o-transition:.4s linear;transition:.4s linear;overflow:hidden;display:inline-block;border-radius:50%}
+.commentmut .avatar image{width:100%;height:100%;display:block}
+.commentmut .avatar{width:35px; height:35px;}
+.commentmut .son{width: 22px; height: 22px;}
+
+.commentmut .sub-comment-item{padding:15px 0;border-top:1px solid;font-size:14px;color:#484848;border-color:#e6e6e6}
+.commentmut .sub-comment-item .user-avatar{float:left;margin-right:8px}
+.commentmut .sub-comment-item .sub-comment-wrap{overflow:hidden;padding-right:18px}
+.commentmut .sub-comment-item .sub-comment-wrap .nickname{font-size:16px;font-weight:700;vertical-align:middle;color:#484848}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-text{font-size:15px}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-text a{color:#3194d0}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-images{margin-top:8px;margin-bottom:8px;position:relative;font-size:0}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-images .image{position:relative;border-radius:2px;background-position:50%;background-repeat:no-repeat;-webkit-background-size:cover;background-size:cover;display:inline-block;height:0;width:32%;padding-top:32%;overflow:hidden}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-images .image:not(:nth-child(3n)){margin-right:2%}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-images .image:nth-child(n+4){margin-top:2%}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-images .image:after{left:100%}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-images .image.is-long:after{content:"\957F\56FE";position:absolute;bottom:0;margin-left:-22px;width:44px;height:28px;font-size:18px;text-align:center;line-height:28px;background-color:#2f2f2f;opacity:.5;color:#fff;-webkit-transform:scale(.5);-ms-transform:scale(.5);transform:scale(.5);-webkit-transform-origin:left bottom;-ms-transform-origin:left bottom;transform-origin:left bottom}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-images .mask{position:absolute;right:0;top:0;height:100%;width:32%;border-radius:2px;background-color:rgba(47,47,47,.6);overflow:hidden;pointer-events:none}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-images .mask span{font-size:15px;color:#fff;position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:100%;text-align:center}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-images .collapsed-btn{color:#3194d0;font-size:13px;margin-top:11px}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-extra{padding-top:5px;font-size:12px;color:#b1b1b1}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-extra .reply-btn{padding-left:6px;width:190rpx;float:right;font-size:13px;color:#b1b1b1;}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-extra .reply-btn .sbtn{width:80rpx;margin-right:30rpx;float:left;color:#b1b1b1;}
+.commentmut .sub-comment-item .sub-comment-wrap .sub-comment-extra .reply-btn .sbtn:last-child{margin-right:0;color:#b1b1b1;}
+/**************bottom-toast*****************/
+.commentmut .pupContentBG {width:100vw; height:100vh; position:fixed; top:0;}
+.commentmut .pupContent {width:100%; background:white; position:fixed; top:0; box-shadow:0 0 10rpx #555; height:0; z-index:999;}
+
+/**设置显示的背景**/
+.commentmut .showBG {display: block;}
+.commentmut .hideBG {display: none;}
+
+/* 弹出或关闭动画来动态设置内容高度 */
+@keyframes slideBGtUp {
+  from {
+    background: transparent;
+  }
+  to {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+@keyframes slideBGDown {
+  from {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  to {
+    background: transparent;
+  }
+}
+
+/* 显示或关闭内容时动画 */
+.commentmut .openBG {
+  animation: slideBGtUp 0.5s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}
+.commentmut .closeBG {
+  animation: slideBGDown 0.5s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}
+
+/* 设置显示内容 */
+.commentmut .showContent {
+	display: block;
+	width:calc(100% - 39rpx);
+	padding: 20rpx;
+	border-top:10px solid #f5f5f5;
+}
+.commentmut .hideContent {display: none;}
+
+/* 弹出或关闭动画来动态设置内容高度 */
+@keyframes slideContentUp {
+  from {
+    height: 0;
+  }
+  to {
+    height: 800rpx;
+  }
+}
+@keyframes slideContentDown {
+  from {
+    height: 800rpx;
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* 显示或关闭内容时动画 */
+.commentmut .open {
+  animation: slideContentUp 0.5s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}
+.commentmut .close {
+  animation: slideContentDown 0.5s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}
+/**--------------------------------replay and thumbsUp End----------------------------------**/

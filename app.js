@@ -1,4 +1,6 @@
 // app.js
+const $api=require("./utils/api.js");
+
 App({
   onLaunch() {
     // 展示本地存储能力
@@ -10,6 +12,16 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        $api.request("GET","/session",{"code":res.code,})
+          .then(res=>{
+            console.log("my login token is",res.data.data.token);
+            wx.setStorageSync('token',res.data.data.token);
+          })
+          .catch(err=>{
+            console.log("login error");
+            console.log(res.code);
+            console.log(err);
+          })
       }
     })
   },
@@ -33,7 +45,8 @@ App({
     })
   },
   globalData: {
-    server: "http://39.104.59.169:3000",
+    server: "http://39.104.59.169:3001",
+    baseUrl: "http://39.104.59.169:3001",
 //      server: "http://localhost:5000",
   },
 })

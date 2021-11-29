@@ -1,0 +1,132 @@
+<!----replay-thumbsUp---->
+<!----loading---->
+<template name="replayThumbsup">
+<!--
+<block wx:if="{{commentInfo}}">
+-->
+<block>
+<view class="commentmut">
+		
+	<view id="comment-main">
+		<view class="margin-top"></view>
+		<view class="top-title">
+			评论({{commentInfo.num}})
+			<view class="button write-comment" data-pid="0" data-aid="{{commentInfo.aid}}" data-nav_id="{{commentInfo.nav_id}}" data-type="{{commentInfo.type}}" catchtap="replayAct"><i class="iconfont ic-write"></i>写评论</view>
+		</view>
+		<view class="comments-wrap">
+			<!--------comment-list------->
+			<block wx:for="{{commentInfo.list}}" wx:for-item="co" wx:for-index="index" wx:key="*.this">			
+			<view class="comment-item">
+				<a href="javascript:void(0)" class="user-avatar avatar">
+					<span class="avatar">
+						<image src="{{co.avatar}}" />
+					</span>
+				</a>
+				<view class="main">
+					<view class="comment-user">
+						<view class="nickname-wrap"><a href="javascript:void(0)" class="nickname oneline">{{co.nickname}}</a></view>
+					</view>
+					<view class="comment-content">
+						{{co.content}}
+						<block wx:if="{{co.pic}}" wx:for="{{co.pic}}" wx:key="*.this" wx:for-item="cop" wx:for-index="copindex">
+							<image mode="widthFix" src="{{cop}}" />
+						</block>						
+					</view>
+					<view class="comment-extra">
+						<span class="floor">{{index+1}}楼</span>{{co.create_time}}
+						<!-- 回复和点赞模块，现在先注释掉
+						<view class="social-wrap">
+							<view class="button reply-btn" data-pid="{{co.id}}" data-aid="{{co.aid}}" data-nav_id="{{co.nav_id}}" data-type="{{co.type}}" catchtap="replayAct">回复</view>
+							<view class="button" data-id="{{co.id}}" data-aid="{{co.aid}}" data-pid="{{co.pid}}" data-nav_id="{{co.nav_id}}" data-isthumbsup="{{co.isThumbsup}}" data-type="{{co.type}}" catchtap="thumbsupAct">点赞</view>
+						</view>
+						-->
+					</view>
+					<block wx:if="{{co.children}}">
+					<view class="sub-comment-list">
+						<!--------son-list-----
+						<block wx:for="{{co.children}}" wx:key="*.this" wx:for-item="coc" wx:for-index="cocindex">
+						<view class="sub-comment-item">
+							<a href="javascript:void(0)" class="user-avatar">
+								<span class="avatar son">
+									<image src="{{coc.avatar}}" />
+								</span>
+							</a>
+							<view class="sub-comment-wrap">
+								<a href="javascript:void(0)" class="nickname oneline">{{coc.nickname}}</a>
+								<view class="sub-comment-text">
+									<a href="javascript:void(0)" class="maleskine-author" target="_blank" data-user="1">@{{coc.replay_nickname}}</a>
+									{{coc.content}}
+									<block wx:if="{{coc.pic}}" wx:for="{{coc.pic}}" wx:key="*.this" wx:for-item="cocp" wx:for-index="cocpindex">
+										<image mode="widthFix" src="{{cocp}}" />
+									</block>									
+								</view>
+								<view class="sub-comment-extra">
+									{{coc.create_time}}
+									<view class="button reply-btn">
+										<view class="sbtn" data-aid="{{coc.aid}}" data-pid="{{coc.id}}" data-nav_id="{{coc.nav_id}}" data-type="{{coc.type}}" catchtap="replayAct">回复</view>
+										<view class="sbtn" data-id="{{coc.id}}" data-aid="{{coc.aid}}" data-pid="{{coc.pid}}" data-nav_id="{{coc.nav_id}}" data-isthumbsup="{{coc.isThumbsup}}" data-type="{{coc.type}}" catchtap="thumbsupAct">点赞</view>
+									</view>									
+								</view>
+							</view>
+						</view>
+						</block>
+						------son-list------->
+					</view>
+					</block>
+					<!---->
+				</view>
+			</view>
+			</block>
+			<!--------comment-list------->
+		</view>
+		<view class="no-more-comment"></view>
+		
+		<!---------------comBoxIng------------------->
+		<view class="comment-wrapper">
+			<!-- 底部弹窗动画的内容 -->
+			<view class='pupContent {{click? "showContent": "hideContent"}} {{opt? "open": "close"}}' hover-stop-propagation='true'>
+				<view class="pupContent-top"></view>
+				<view class="commentSubmit">
+					<form bindsubmit="formSubmit" bindreset="formReset">
+						<view class="conts">
+							<textarea name="content" class="areas" placeholder='留下点评，帮助更多人' minlength="{{comment_bInfo.min}}" maxlength="{{comment_bInfo.max}}" bindinput="inputs">{{form_value}}</textarea>
+							<text class="hint">{{texts}}</text>
+							<text class="currentWordNumber">{{currentWordNumber|0}}/{{comment_bInfo.max}}</text>
+							<input bindinput="bindReplaceInput" style="display:none" placeholder="连续的两个1会变成2" value="{{form_value}}" />
+						</view>
+						<view class="img_box">
+							<view class="imgs" wx:for="{{tempFilePaths}}" wx:key="index">
+								<image src='{{item}}' bindlongpress="deleteImage" bindtap="listenerButtonPreviewImage" data-index="{{index}}" mode='widthFix' />
+							</view>
+							<view class="imgs">
+								<view class="images" style="text-align: center;" bindtap="upload">
+      						<wux-icon wux-class="icon" type="ios-image" size="30"/>
+								</view>
+							</view>
+						</view>
+						<view class="btn-area">
+							<input name="aid" style="display:none" value="{{comment_bInfo.aid}}" />
+							<input name="pid" style="display:none" value="{{comment_bInfo.pid}}" />
+							<input name="type" style="display:none" value="{{comment_bInfo.type}}" />
+							<input name="nav_id" style="display:none" value="{{comment_bInfo.nav_id}}" />
+							<input name="unionID" style="display:none" value="{{comment_bInfo.unionID}}" />
+							<input name="avatar" style="display:none" value="{{comment_bInfo.avatar}}" />
+							
+							<button wx:if="{{!hasUserInfo}}" type="warn" bindtap="getUserProfile">授权</button>
+							<button wx:else type="warn" disabled="{{disabled}}" form-type="submit">提交</button>
+							
+							<button type="default" form-type="reset">重置</button>
+						</view>
+					</form>
+				</view>
+		
+			</view>
+			<!-- 固定的背景 -->
+			<view class='pupContentBG {{click?"showBG":"hideBG"}} {{opt?"openBG":"closeBG"}}' catchtap='replayAct'></view>
+			<!---->
+		</view>
+		<!---------------comBoxEnd------------------->
+	</view>
+</view>
+</block>
+</template>
