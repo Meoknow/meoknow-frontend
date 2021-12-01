@@ -6,11 +6,13 @@ import { $wuxToptips } from '../../dist/index'
 var catPictures;//saving Get cat informaiton data, use data.image_url to get url
 var totalRequest;
 var server=app.globalData.server;
+var returnPicture;
 Page({
   data: {
     returnCatPictures: "../../image/origin.jpg",
     showMask: false,
-    returnPicture: "../../image/origin.jpg",
+    loadingHidden: true,
+    loadingText: "加载中"
   },
 
   cdToRecognize()
@@ -48,6 +50,7 @@ Page({
   verifyCatInformation()//检验并保留合法的请求猫咪信息，存在有效信息则唤醒返回结果
   {
     let mypage=this;
+    mypage.setData({loadingHidden:true});
     console.log("start verify");
     let i;
     for(i=catPictures.length;i>=0;--i)
@@ -59,9 +62,13 @@ Page({
       this.tipFindNoCat();
     }
     else {
-      mypage.setData({returnCatPictures:catPictures});
+      wx.navigateTo({
+        
+        url: "/pages/recognize/reply?rescats="+JSON.stringify(catPictures)+"&userimage="+returnPicture
+      })
+      /*mypage.setData({returnCatPictures:catPictures});
       console.log('catPicturelength!=0');
-      mypage.setData({showMask:true});//showing cats
+      mypage.setData({showMask:true});//showing cats*/
     }
   },
   getCatInformation(cat_id,index,confidence)//请求获得cat_id的猫信息,index为本次识图中返回的猫index,confidence为得分
@@ -131,12 +138,19 @@ Page({
   postMyImg(myBase64Img)
   {
     let mypage=this;
+    mypage.setData({
+      loadingHidden: false,
+      loadingText: "正在识猫"
+    });
+
     $api.request("POST","/identify/",{"image":myBase64Img})
     .then(res=>{
+      
       console.log("post success");
       totalRequest=0;
       if(res.statusCode==200)//找到猫
       {
+        mypage.setData({loadingText: "正在获取结果"});
         let i;
         catPictures=[];
         totalRequest=res.data.data.cats.length;
@@ -157,6 +171,7 @@ Page({
     })
     .catch(err=>{
       console.log(err.errMsg);
+      mypage.setData({loadingHidden:true});
     })
   },
   showActionSheet() {
@@ -169,11 +184,13 @@ Page({
       success: function(res) {
         
         catPictures=[];//clear catPictures;
+        returnPicture = res.tempFilePaths[0];
         var FSM = wx.getFileSystemManager();//获取全局文件管理系统
         FSM.readFile({//读本地暂存图
           filePath: res.tempFilePaths[0],
           encoding: "base64",//base64格式解码
           success: function(data) {
+            console.log(data)
             let myBase64Img;
             let suffix;
             let i;
@@ -193,7 +210,6 @@ Page({
             mypage.getCatInformation(1,0,0.5);
             mypage.getCatInformation(1,1,0.4);
             mypage.getCatInformation(1,2,0.3);*/
-
             mypage.postMyImg(myBase64Img);
           }
         });

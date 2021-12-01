@@ -3,24 +3,36 @@
     <block class="reply-page">
       <view class="page__hd" style="flex-direction:column;">
         <view class="top-user-image-hd">
-          <image class="top-user-image" src="{{userimage}}"></image>
+          <image class="top-user-image" src="{{userimage}}" mode="aspectFill"></image>
         </view>
-        <text class="reply-text-1">识别成功</text>
-        <text class="reply-text-2">您拍的猫咪可能是：</text>
-        <view class="reply-card" style="flex-direction:row;">
-          <view class="reply-card-left"> 
-            <text class="reply-card-name">{{rescats[current].name}}</text>
-            <text class="reply-card-score">{{rescats[current].confidence}}</text>
-            <text class="reply-text-3">点我查看ta的图鉴</text>
-          </view>
-          <view class="reply-card-right">
-            <image class="reply-card-image" src="{{rescats[current].img_url}}"></image>
-          </view>
-        </view>
-        <text class="reply-text-3">左右滑动查看其他结果</text>
+        <view class="reply-text-1">识别成功！</view>
+        <view class="reply-text-2">您拍的猫咪可能是：</view>
+        <swiper indicator-dots="true" class="reply-swiper" 
+          autoplay="false" duration="500" indicator-active-color="rgb(128, 64, 0)" >
+          <swiper-item class="reply-swiper-item" wx:for="{{rescats}}" wx:key="cat_id">
+            
+            <view class="reply-card">
+              <view class="reply-card-left">
+                  <view class="reply-card-main">
+                    <view class="reply-card-name">{{item.name}}</view>
+                    <view class="reply-card-score">得分：{{item.confidence}}</view>
+                    
+                  </view>
+                  <view class="reply-card-sub">
+                    <view bindtap="navi_to_detail" data-cat="{{item}}">
+                      点我查看ta的图鉴
+                    <wux-icon bindtap="navi_to_detail" data-cat="{{item}}" wux-class="icon" type="ios-search" size="18"/>
+                    </view>
+                  </view>
+                
+                </view>
+              <image class="reply-card-image" src="{{item.img_url}}"></image>
+            </view>
+          </swiper-item>
+        
+        </swiper>
+        <view class="reply-text-3">左右滑动查看其他结果</view>
       </view>
     </block>
-    <wux-pagination defaultCurrent="1" total="{{rescats.length}}" mode="pointer">
-    </wux-pagination>
   </view>
 </view>

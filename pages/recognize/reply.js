@@ -7,52 +7,42 @@ Page({
    */
   data: {
     current: 1,
-    userimage: "",
-    rescats: null
+    userimage: "http://39.104.59.169:3000/photos/public202111180245198051240148.jpeg",
+    rescats: [
+      {
+        "cat_id": 2,
+        "name" : "老二",
+        "img_url": "http://39.104.59.169:3000/photos/public202111180245198051240148.jpeg",
+        "confidence": "0.9"
+      },
+
+      
+      {
+        "cat_id": 2,
+        "name" : "老二",
+        "img_url": "http://39.104.59.169:3000/photos/public202111180245198051240148.jpeg",
+        "confidence": "0.9"
+      }
+    ]
   },
 
-  getCatInfo: function(options) {
-    console.log(options.cat_id);
-    let retcat = {};
-    let stocats = wx.getStorageSync("cats");
-    /*wx.getStorage({
-      key: "cats",
-      success (res) {
-        console.log(res.data);
-        let stocats = res.data;
-      }
-    })*/
-    console.log(stocats);
-    let i;
-    for(i=0;i<stocats.length;i++) {
-      if (options.cat_id == stocats[i].cat_id) {
-        retcat = JSON.parse(JSON.stringify(stocats[i]));
-        console.log(retcat);
-      }
-    }
-    return retcat;
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const eventChannel = this.getOpenerEventChannel();
-    let mypage = this;
-    
-    eventChannel.on('replyCats', function(data) {
-      console.log(data);
-      let i;
-      let tmp_cats = new Array();
-      mypage.setData({userimage:data.data.img_url});
-      console.log(data.data.cats.length);
-      for (i=0; i<data.data.cats.length; i++) {
-        // console.log(mypage.getCatInfo(data.data.cats[i].cat_id));
-        tmp_cats.push(mypage.getCatInfo({
-          cat_id:data.data.cats[i].cat_id
-        }));
-      }
-      console.log(tmp_cats);
-      mypage.setData({rescats:tmp_cats});
+    // console.log(options)
+    this.setData({
+      rescats:JSON.parse(options.rescats),
+      userimage:options.userimage
+    })
+  },
+
+  navi_to_detail:function(e)
+  {
+    var cat = e.currentTarget.dataset.cat;
+    console.log(cat.cat_id);
+    wx.navigateTo({
+      url: "/pages/book/detail/detail?cat_id="+cat.cat_id
     })
   },
 
