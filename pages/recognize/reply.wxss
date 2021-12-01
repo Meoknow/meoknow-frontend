@@ -1,0 +1,100 @@
+/* pages/recognizereply.wxss */
+html, body{
+  margin:0;
+  height:100%;
+  
+}
+
+.reply-card-image {
+  margin: 0 0 0 0;
+  width: 300rpx;
+  height: 300rpx;
+  display: flex;
+  flex-direction: row-reverse;
+  /*justify-content: center;*/
+}
+.reply-card-left {
+  margin: 0 0 0 0;
+  width: 410rpx;
+  display:inline-flexbox;
+  flex:content;
+  flex-direction: column;
+}
+.reply-card {
+  flex-direction: row;
+  display: flex;
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  background-color:rgb(245, 245, 245);
+  padding: 0;
+}
+
+.reply-swiper {
+  height: 400rpx;
+  background-color: white;
+}
+
+.reply-swiper-hd {
+  
+}
+
+.reply-text-1 {
+  font-size: 55rpx;
+  display:flex;
+  justify-content: center;
+  color: rgb(63, 189, 63);
+}
+
+.top-user-image {
+  
+  display:flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.top-user-image-hd {
+  height: 650rpx;
+  background-color: rgb(210, 210, 210);
+}
+
+.top-user-image {
+  margin: 0 100rpx 0 100rpx;
+  width: 550rpx;
+  height: 100%;
+}
+
+
+.reply-card-name {
+  font-size: 70rpx;
+}
+
+.reply-text-2 {
+  font-size: 40rpx;
+  display:flex;
+  justify-content: center;
+  color: gray;
+}
+
+.reply-card-main {
+  margin:20rpx;
+  background-color: white;
+  color:#e2a448;
+  padding: 10rpx;
+}
+.reply-card-sub {
+  margin:20rpx;
+  background-color: white;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+  font-size: 35rpx;
+  color: gray;
+}
+
+.reply-text-3 {
+  margin: 20rpx;
+  text-align: center;
+  font-size: 35rpx;
+  color: darkgray;
+}
+
+.reply-card-score {
+  font-size: 40rpx;
+}

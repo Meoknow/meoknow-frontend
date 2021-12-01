@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "reply",
+  "usingComponents": {
+      "wux-pagination": "../../../dist/pagination/index",
+      "wux-card": "../../../dist/card/index",
+      "wux-wing-blank": "../../../dist/wing-blank/index"
+  }
+}

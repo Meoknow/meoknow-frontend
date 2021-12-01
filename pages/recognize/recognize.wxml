@@ -17,7 +17,9 @@
 </wux-tabbar>
 
 <wux-toptips id="wux-toptips" />
-
+<loading hidden="{{loadingHidden}}">
+{{loadingText}}
+</loading>
 <view class="pageBody">
   <view class="descripterBlank" />
   <view class="descripter"> Meo know</view>
@@ -30,22 +32,23 @@
   <image class="myButtonImage" src="../../image/camera.jpg"  bindtap="showActionSheet"/>
   <image class="backGround" src="../../image/origin.jpg" mode="aspectFill"/>
 
+  <!--
   <view class="modalDlg" wx:if="{{showMask}}">
     <view class='close_mask' bindtap="close_mask">x</view>
-    
     <swiper indicator-dots="true" class="myswiper" 
       autoplay="false" duration="500" indicator-active-color="rgb(128, 64, 0)" >
       <block wx:for="{{returnCatPictures}}" wx:key="cat_id">
         <swiper-item>
           <image class="myswiperItem" src="{{ item.img_url }}" mode="aspectFit"/>
             <view class="myswiperNote">{{item.name}}
-<text bindtap="navi_to_detail" data-cat="{{item}}">查看图鉴</text><wux-icon bindtap="navi_to_detail" data-cat="{{item}}" wux-class="icon" type="ios-search" size="18" />
+<text bindtap="navi_to_detail" data-cat="{{item}}">点我查看ta的图鉴</text><wux-icon bindtap="navi_to_detail" data-cat="{{item}}" wux-class="icon" type="ios-search" size="18" />
 得分 {{item.confidence}}
             </view>
         </swiper-item>
       </block>
     </swiper>
   </view>
+  -->
 </view>
 
 <view class="mask" wx:if="{{showMask}}"></view>

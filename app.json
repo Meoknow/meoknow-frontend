@@ -1,12 +1,13 @@
 {
     "pages": [
-        "pages/index/index",
         "pages/recognize/recognize",
+        "pages/index/index",
         "pages/book/book",
         "pages/book/detail/detail",
         "pages/my/my",
         "pages/book/search/search",
-        "pages/book/detail"
+        "pages/book/detail",
+        "pages/recognize/reply"
     ],
     "window": {
         "backgroundTextStyle": "light",
