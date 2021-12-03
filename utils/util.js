@@ -1,7 +1,84 @@
 //获取应用实例
 const app = getApp();
 const $api=require("./api.js");
+const PGSIZE=5;
 const cat_id=3;
+
+function transComment(y,cat_id=3)
+{
+    return {//获取评论信息
+        //						"avatar":"../../image/camera.jpg",//for now
+        "avatar":y.avatar,
+        "content":y.content,
+        "pic":y.images,
+        "id":y.comment_id,
+        "aid":cat_id,//cat_id!
+        "nav_id":0,//?不知道怎么填
+        "type":0,//?不知道怎么填
+        "pid":y.comment_id,//?不太清楚填没填对
+        "isThumbsup":y.is_liked,
+        "children":[],
+        //x.children=...
+    }
+}
+
+function getPage(that,pageNumber) 
+{
+	$api.request("GET","/cats/"+cat_id+"/comments/",{"page_size":PGSIZE,"page":pageNumber},1)
+	.then(res=>{
+		//处理一下commentInfo
+		console.log(pageNumber)
+		console.log(res);
+		let commentInfo={//获取第一页评论信息
+			list:[],
+			num:res.data.total,
+		};
+		if(pageNumber!=1)
+			commentInfo=that.data.commentInfo;
+		let i;
+		for(i=0;i<res.data.comments.length;++i)
+		{
+			let y=res.data.comments[i];
+			let x=transComment(y,cat_id);
+			commentInfo.list.push(x);
+		}
+		that.setData({loading: false})
+		that.setData({
+			commentInfo: commentInfo
+		})
+		//如果返回的数据为空，那么就没有下一页了
+		if (res.data.comments.length < PGSIZE) {
+			that.setData({
+				noMore: true
+			})
+		}
+	})
+	.catch(err=>{//在获取不到评论区信息的时候报错
+		console.log("err on comments,start debugging");
+		console.log(err);
+		let commentInfo={
+
+			"num":1,
+			"list":[{
+				"avatar":"../../image/camera.jpg",
+				"content":"if you see this,something wrong occurred",
+				"id":1,
+				"aid":3,
+				"nav_id":0,
+				"type":0,
+				"pid":1,
+				"isThumbsup":1,
+				"children": [],
+			}],
+		};
+			console.log(commentInfo);
+		wx.setStorageSync('commentInfo', commentInfo);
+		app.globalData.commentInfo = commentInfo;
+		that.setData({
+			commentInfo: wx.getStorageSync('commentInfo')
+		})
+	})
+}
 
 //Translate data method
 function request(url, paramData, doSuccess, method="GET") {
@@ -269,19 +346,13 @@ let commentAction = {
 		let x={};
 		x.content=e.detail.value.content;
 		x.images=e.detail.value.pic;
-		console.log("submit!");
-		console.log(that.data.imgs1);
-		console.log(e.detail.value);
 		$api.request("POST","/cats/"+cat_id+"/comments/",x,1)
 		.then(res=>{
 			if(res.code==0)
 			{
 				console.log("submit comment success");
-				wx.startPullDownRefresh({
-					success: (res) => {
-						console.log("success on refresh")
-					},
-				})
+				getPage(that,1);
+				wx.setStorageSync('handleStatus',true);
 			}
 			else 
 				console.log("submit fail1");
@@ -304,7 +375,8 @@ let commentAction = {
 				})
 				wx.setStorageSync('handleStatus',true)
 			}
-		}, "POST")
+		}, "POST")*/
+
 		console.log(wx.getStorageSync('handleStatus'))
 		if(wx.getStorageSync('handleStatus')){
 			this.replayAct(that)
@@ -407,10 +479,23 @@ let commentAction = {
 		}
 		return obj
 	},
+
+	//到达底部
+  scrollToLower: function (that,pageNumber) {
+    if (!that.data.loading && !that.data.noMore){
+      that.setData({
+        loading: true,
+      })
+      getPage(that,pageNumber);
+    }
+  },
+
+
 	/***查找**多维数组-最多为四维数组***结束***/
 }
 module.exports = {
 	request: request,
 	parseParam: parseParam,
-  commentAction: commentAction,
+	commentAction: commentAction,
+	getPage:getPage,
 }

@@ -7,7 +7,7 @@
 <block>
 <view class="commentmut">
 		
-	<view id="comment-main">
+	<scroll-view id="comment-main" scroll-y lower-threshold="100" bindscrolltolower="scrollToLower" style="height: 100vh;">
 		<view class="margin-top"></view>
 		<view class="top-title">
 			评论({{commentInfo.num}})
@@ -79,7 +79,11 @@
 			</block>
 			<!--------comment-list------->
 		</view>
-		<view class="no-more-comment"></view>
+    <view style="text-align: center;margin: 10px;">
+      <view wx:if="{{loading}}">加载中...</view>
+      <view wx:if="{{noMore}}">没有更多了</view>
+      <view wx:if="{{loadingFailed}}">数据加载失败,请重试</view>
+    </view>
 		
 		<!---------------comBoxIng------------------->
 		<view class="comment-wrapper">
@@ -126,7 +130,7 @@
 			<!---->
 		</view>
 		<!---------------comBoxEnd------------------->
-	</view>
+	</scroll-view>
 </view>
 </block>
 </template>

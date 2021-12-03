@@ -3,8 +3,7 @@
 const app = getApp();
 let util = require('../../utils/util.js');
 const $api=require('../../utils/api.js');
-const PGSIZE=20;
-const cat_id=3;
+var currentPage;
 
 Page({
 	data: {
@@ -41,70 +40,18 @@ Page({
 			}, "GET");*/
 		
 			//cat_id=1
-		console.log(wx.getStorageSync('commentInfo'));
-		$api.request("GET","/cats/"+cat_id+"/comments/",{"page_size":PGSIZE,"page":1},1)
-			.then(res=>{
-				//处理一下commentInfo
-				let commentInfo={//获取全部评论信息
-					list:[],
-					num:res.data.length,
-				};
-
-				let i;
-				for(i=0;i<commentInfo.num;++i)
-				{
-					let y=res.data[i];
-					let x={//获取评论信息
-//						"avatar":"../../image/camera.jpg",//for now
-						"avatar":y.avatar,
-						"content":y.content,
-						"pic":y.images,
-						"id":y.comment_id,
-						"aid":cat_id,//cat_id!
-						"nav_id":0,//?不知道怎么填
-						"type":0,//?不知道怎么填
-						"pid":y.comment_id,//?不太清楚填没填对
-						"isThumbsup":y.is_liked,
-						"children":[],
-						//x.children=...
-					};
-					commentInfo.list.push(x);
-				}
-				wx.setStorageSync('commentInfo', commentInfo);
-				app.globalData.commentInfo = commentInfo;
-				that.setData({
-					commentInfo: wx.getStorageSync('commentInfo')
-				})
-			})
-			.catch(err=>{
-				console.log("err on comments,start debugging");
-				console.log(err);
-				let commentInfo={
-
-					"num":1,
-					"list":[{
-						"avatar":"../../image/camera.jpg",
-						"content":"if you see this,something wrong occurred",
-						"id":1,
-						"aid":3,
-						"nav_id":0,
-						"type":0,
-						"pid":1,
-						"isThumbsup":1,
-						"children": [],
-					}],
-				};
-					console.log(commentInfo);
-				wx.setStorageSync('commentInfo', commentInfo);
-				app.globalData.commentInfo = commentInfo;
-				that.setData({
-					commentInfo: wx.getStorageSync('commentInfo')
-				})
-			})
+		currentPage=1;
+		util.getPage(that,currentPage);
 		
 		//	获取评论+++++++++++++++++++完整方式==结束======================		
 	},
 	
+	//上划查看更多
+	scrollToLower: function(e){
+		var that=this
+		++currentPage
+		util.commentAction.scrollToLower(that,currentPage)
+	},
 	/*************************评论/点赞组件->开始***************************/
 	//点击打开弹窗
 	replayAct: function(e){
