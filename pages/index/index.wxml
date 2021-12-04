@@ -2,7 +2,7 @@
 <import src="/template/template.wxml"/>
 <!----new-comment&thumbsup---->
 <view class="widyBox">
-	<template is="replayThumbsup" data="{{commentInfo, click, opt, currentWordNumber, disabled, tempFilePaths, imgs1, comment_bInfo, hasUserInfo, userInfo, userNickname}}"/>
+	<template is="replayThumbsup" data="{{commentInfo, click, opt, currentWordNumber, disabled, tempFilePaths, imgs1, comment_bInfo, hasUserInfo, userInfo, userNickname,cat_id}}"/>
 </view>
 
 <!----new-comment&thumbsup---->

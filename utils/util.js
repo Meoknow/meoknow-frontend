@@ -2,9 +2,8 @@
 const app = getApp();
 const $api=require("./api.js");
 const PGSIZE=5;
-const cat_id=3;
 
-function transComment(y,cat_id=3)
+function transComment(that,y)
 {
     return {//获取评论信息
         //						"avatar":"../../image/camera.jpg",//for now
@@ -12,7 +11,7 @@ function transComment(y,cat_id=3)
         "content":y.content,
         "pic":y.images,
         "id":y.comment_id,
-        "aid":cat_id,//cat_id!
+        "aid":that.data.cat_id,//cat_id!
         "nav_id":0,//?不知道怎么填
         "type":0,//?不知道怎么填
         "pid":y.comment_id,//?不太清楚填没填对
@@ -24,7 +23,7 @@ function transComment(y,cat_id=3)
 
 function getPage(that,pageNumber) 
 {
-	$api.request("GET","/cats/"+cat_id+"/comments/",{"page_size":PGSIZE,"page":pageNumber},1)
+	$api.request("GET","/cats/"+that.data.cat_id+"/comments/",{"page_size":PGSIZE,"page":pageNumber},1)
 	.then(res=>{
 		//处理一下commentInfo
 		console.log(pageNumber)
@@ -39,7 +38,7 @@ function getPage(that,pageNumber)
 		for(i=0;i<res.data.comments.length;++i)
 		{
 			let y=res.data.comments[i];
-			let x=transComment(y,cat_id);
+			let x=transComment(that,y);
 			commentInfo.list.push(x);
 		}
 		that.setData({loading: false})
@@ -346,7 +345,7 @@ let commentAction = {
 		let x={};
 		x.content=e.detail.value.content;
 		x.images=e.detail.value.pic;
-		$api.request("POST","/cats/"+cat_id+"/comments/",x,1)
+		$api.request("POST","/cats/"+that.data.cat_id+"/comments/",x,1)
 		.then(res=>{
 			if(res.code==0)
 			{

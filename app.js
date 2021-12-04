@@ -45,8 +45,8 @@ App({
     })
   },
   globalData: {
-    server: "http://39.104.59.169:3001",
-    baseUrl: "http://39.104.59.169:3001",
+    server: "http://39.104.59.169:3000",
+    baseUrl: "http://39.104.59.169:3000",
 //      server: "http://localhost:5000",
   },
 })
