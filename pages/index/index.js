@@ -17,6 +17,7 @@ Page({
 		imgs1:[],	//当前图片资源 + + + + + + + + + + + + + + 评论点赞插件专属
 		tempFilePaths: [],	//临时文件资源 + + + + + + + + + + 评论点赞插件专属
 		disabled: true,		//按钮初始状态 + + + + + + + + + + 评论点赞插件专属
+		cat_id: 3,
 	},
 	onLoad: function (options) {
 		var that = this;		
@@ -84,9 +85,9 @@ Page({
 		util.commentAction.formSubmit(that,e)
 	},
 	//表单提交
-	formReset: function(e){
+	formReset: function(e,cat_id){
 		var that = this
-		util.commentAction.formReset(that,e)
+		util.commentAction.formReset(that,e,cat_id)
 	},
 	
 	thumbsupAct: function(e){
