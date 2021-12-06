@@ -1,6 +1,9 @@
 <!----replay-thumbsUp---->
 <!----loading---->
 <template name="replayThumbsup">
+
+<wux-toptips id="wux-toptips" />
+
 <!--
 <block wx:if="{{commentInfo}}">
 -->
@@ -82,7 +85,6 @@
     <view style="text-align: center;margin: 10px;">
       <view wx:if="{{loading}}">加载中...</view>
       <view wx:if="{{noMore}}">没有更多了</view>
-      <view wx:if="{{loadingFailed}}">数据加载失败,请重试</view>
     </view>
 		
 		<!---------------comBoxIng------------------->
@@ -93,7 +95,7 @@
 				<view class="commentSubmit">
 					<form bindsubmit="formSubmit" bindreset="formReset">
 						<view class="conts">
-							<textarea name="content" class="areas" placeholder='留下点评，帮助更多人' minlength="{{comment_bInfo.min}}" maxlength="{{comment_bInfo.max}}" bindinput="inputs">{{form_value}}</textarea>
+							<textarea name="content" class="areas" placeholder='发布你想对猫猫说的话吧(*╹▽╹*)' minlength="{{comment_bInfo.min}}" maxlength="{{comment_bInfo.max}}" bindinput="inputs">{{form_value}}</textarea>
 							<text class="hint">{{texts}}</text>
 							<text class="currentWordNumber">{{currentWordNumber|0}}/{{comment_bInfo.max}}</text>
 							<input bindinput="bindReplaceInput" style="display:none" placeholder="连续的两个1会变成2" value="{{form_value}}" />
