@@ -118,10 +118,10 @@
 							<input name="unionID" style="display:none" value="{{comment_bInfo.unionID}}" />
 							<input name="avatar" style="display:none" value="{{comment_bInfo.avatar}}" />
 							
-							<button wx:if="{{!hasUserInfo}}" type="warn" bindtap="getUserProfile">授权</button>
-							<button wx:else type="warn" disabled="{{disabled}}" form-type="submit">提交</button>
+							<button wx:if="{{!hasUserInfo}}" type="primary" bindtap="getUserProfile">授权</button>
+							<button wx:else type="primary" disabled="{{disabled}}" form-type="submit">提交</button>
 							
-							<button type="default" form-type="reset">重置</button>
+							<button style="color:white;background:red" form-type="reset">重置</button>
 						</view>
 					</form>
 				</view>

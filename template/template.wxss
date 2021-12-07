@@ -202,7 +202,7 @@ page{background:#f8f8f8; margin:0; padding:0;}
 	background-color:#F8F8F8;
 }
 
-.btn-area button{display:block; text-align:center; width:80%; line-height:2;}
+.btn-area button{display:block; text-align:center; width:100%; line-height:2;}
 .view{overflow:hidden;font-size:30rpx;color:#555;}
 .swiperBox{width:100%; margin:0 auto; margin:0; background:#fff; border-radius:0rpx;}
 .mainBox{width:97.5%; margin:0 auto; margin-top:15rpx; background:#fff; border-radius:8rpx;}
