@@ -1,8 +1,20 @@
 //获取应用实例
 const app = getApp();
 const $api=require("./api.js");
-const PGSIZE=5;
+import { $wuxToptips } from '../dist/index'
+const PGSIZE=10;
 
+function setBinfo(that)
+{
+	let comment_bInfo={
+		min: that.data.min,
+		max: that.data.max,
+		type: 0,
+		aid: that.data.cat_id,
+		nav_id: 0
+	} 
+	that.setData({"comment_bInfo":comment_bInfo})
+}
 function transComment(that,y)
 {
     return {//获取评论信息
@@ -19,6 +31,14 @@ function transComment(that,y)
         "children":[],
         //x.children=...
     }
+}
+function showTopTip(that) {
+	$wuxToptips().error({
+			hidden: false,
+			text: '获取更多评论失败，请重试',
+			duration: 3000,
+			success() {},
+	})
 }
 
 function getPage(that,pageNumber) 
@@ -53,6 +73,11 @@ function getPage(that,pageNumber)
 		}
 	})
 	.catch(err=>{//在获取不到评论区信息的时候报错
+		console.log("err on get comments")
+		showTopTip(that);
+		that.setData({loading: false})//获取评论区失败，重置加载评论
+
+		/*静态页面元素
 		console.log("err on comments,start debugging");
 		console.log(err);
 		let commentInfo={
@@ -76,6 +101,7 @@ function getPage(that,pageNumber)
 		that.setData({
 			commentInfo: wx.getStorageSync('commentInfo')
 		})
+		*/
 	})
 }
 
@@ -359,24 +385,6 @@ let commentAction = {
 		.catch(err=>{
 			console.log("submit comment fail");
 		})
-/*		let param = parseParam(e.detail.value)
-		//	提交表单数据
-		request('api/handleData', {
-			'act': 'pushComment',   
-			'param': param,
-		},function(res) {
-			console.log(res.data.data.commentInfo);
-			if(res.data.error==0){
-				//	关闭/打开窗口
-				//	设置/清除所有的数据
-				that.setData({
-					commentInfo: res.data.data.commentInfo,
-				})
-				wx.setStorageSync('handleStatus',true)
-			}
-		}, "POST")*/
-
-		console.log(wx.getStorageSync('handleStatus'))
 		if(wx.getStorageSync('handleStatus')){
 			this.replayAct(that)
 			that.setData({
@@ -385,6 +393,7 @@ let commentAction = {
 			})
 			wx.removeStorageSync('handleStatus')
 		}
+		that.setData({"click":false})
 		//console.log('form发生了submit事件，携带数据为：', e.detail.value)*/
 	},
 	//表单重置按钮
@@ -488,7 +497,7 @@ let commentAction = {
       getPage(that,pageNumber);
     }
   },
-
+	
 
 	/***查找**多维数组-最多为四维数组***结束***/
 }
@@ -497,4 +506,5 @@ module.exports = {
 	parseParam: parseParam,
 	commentAction: commentAction,
 	getPage:getPage,
+	setBinfo:setBinfo,
 }

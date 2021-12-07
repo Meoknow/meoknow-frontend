@@ -10,7 +10,7 @@ Page({
 		userInfo: app.globalData.userInfo,
 		click: false, //是否显示弹窗内容 + + + + + + + + + + + 评论点赞插件专属
 		opt: false, //显示弹窗或关闭弹窗的操作动画 + + + + + + 评论点赞插件专属
-		min:2,	//输入框最少字数 + + + + + + + + + + + + + + + 评论点赞插件专属
+		min:1,	//输入框最少字数 + + + + + + + + + + + + + + + 评论点赞插件专属
 		max:120,	//输入框最多字数 + + + + + + + + + + + + + 评论点赞插件专属
 		form_value:'',	//输入框中的内容 + + + + + + + + + + + 评论点赞插件专属
 		texts: "",	//当前输入的字数 + + + + + + + + + + + + + 评论点赞插件专属
@@ -22,28 +22,10 @@ Page({
 	onLoad: function (options) {
 		var that = this;		
 		//	获取评论+++++++++++++++++++完整方式==开始======================
-		var actParam = {
-			aid: 1,
-			nav_id: 2,
-			type:1,
-		}
-		//	服务器段处理，并返回处理结果
-		/*
-		util.request('api/index', {
-				'act': 'getCommentHub',   
-				'param': util.parseParam(actParam),
-			},function(res) {
-				wx.setStorageSync('commentInfo', res.data.data)
-				app.globalData.commentInfo = res.data.data
-				that.setData({
-					commentInfo: wx.getStorageSync('commentInfo')
-				})
-			}, "GET");*/
-		
-			//cat_id=1
 		currentPage=1;
-		util.getPage(that,currentPage);
-		
+		util.setBinfo(that);//在page.data.comment_bInfo中存放发布评论的格式
+		util.getPage(that,currentPage);//获取第一页
+
 		//	获取评论+++++++++++++++++++完整方式==结束======================		
 	},
 	
