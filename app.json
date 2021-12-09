@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/map/index",
         "pages/index/index",
         "pages/recognize/recognize",
         "pages/book/book",
