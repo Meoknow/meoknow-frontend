@@ -1,6 +1,6 @@
 /* Componet/select/select.wxss */
 .com-selectBox{
-    width: 200px;
+    width: 275px;
 }
 .com-sContent{
     border: 1px solid #e2e2e2;
@@ -24,6 +24,7 @@
     white-space: nowrap;
     padding:0 20px 0 6px;
     font-size: 14px;
+    margin-left: 109px;
 }
 .com-sList{
     background: white;
@@ -46,6 +47,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 14px;
+    margin-left: 116px;
 }
 .com-sItem:first-child{
     border-top: none;

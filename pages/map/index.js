@@ -9,12 +9,12 @@ function Marker(latitude,longitude,name,marker_id ) {
   this.iconPath= "/image/location.png",
   this.callout= {
     content: name,
-    color: '#ff0000',
+    color: '#000000',
     fontSize: 10,
-    borderWidth: 2,
+    borderWidth: 1,
     borderRdius: 10,
     borderColor: '#000000',
-    bgColor: '#fff',
+    bgColor: '#ccc',
     padding: 3,
     display: 'ALWAYS',
     textAlign: 'center'
@@ -55,7 +55,7 @@ Page({
   reset:function(){
     var that = this 
     that.setData({
-      cat_select_image : '/image/location.png',
+      cat_select_image : '/image/neko-image/neko1.png',
     })
   },
   getDate:function(e){
@@ -70,7 +70,19 @@ Page({
     })
   } ,
   onLoad: function () {
-    var that=this;
+  },
+  
+  onReady: function (e) {
+    var windowHeight = wx.getSystemInfoSync().windowHeight
+    console.log(windowHeight)
+    this.setData({
+      map_height : windowHeight*2 -170
+    })
+    var that = this
+    that.mapCtx = wx.createMapContext('myMap')
+
+    console.log("onReady")
+    that.catRequest()
     wx.getLocation({
       type: 'wgs84',
       //altitude: true,
@@ -81,12 +93,7 @@ Page({
         })
       },
     })
-    that.catRequest()
     
-  },
-  
-  onReady: function (e) {
-    this.mapCtx = wx.createMapContext('myMap')
     
   },
   chooseLocation: function () {
@@ -315,7 +322,7 @@ Page({
   catRequest: function() {
     var that = this;
     //var tmp = new Array();
-
+    console.log("begin cat request")
     $api.request("GET","/cats/","")
     .then(res=>{
       let info = res.data.data

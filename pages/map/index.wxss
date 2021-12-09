@@ -9,9 +9,20 @@
   left: calc(50% - 24rpx);
   top: calc(50% - 77rpx);
 }
+.position{
+  width:100% ;
+  height: 40px;
+  display:flex;
+  align-items:center;    /*垂直居中 */
+ justify-content:center;    /* 水平居中 */
+}
 .page-body-button {
-  margin-top : 0;
-  margin-bottom: 30rpx;
+
+  font-size: 40rpx;
+  border-radius: 100rpx;
+  vertical-align:middle;
+  text-align: center;
+  margin-bottom: 10rpx;
 }
 .btn-area{
   margin-top: 60rpx;
@@ -52,12 +63,18 @@
 /**index.wxss**/
  
 /*模态框*/
+.select-image{
+  width: 275px;
+  height: 275px;
 
+  flex-direction: row;
+}
 .modal-image{
 
   width: 375rpx;
   height: 375rpx;
   margin: 0rpx 0rpx 10rpx;
+  margin-left: 10rpx;
   flex-direction: row;
 }
 .modals-cancel {
@@ -85,13 +102,15 @@
   
 }
 .updateInfo{
+  margin-top: 40rpx;
   font-size : 50rpx ;
   margin-left: 50rpx;
   display: flex;
   flex-direction: column;
+  line-height: 85rpx;
 }
 .text_small{
-  font-size: 27rpx;
+  font-size: 30rpx;
   word-break:break-all;
   color: #7a7878
 }

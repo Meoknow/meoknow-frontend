@@ -2,7 +2,7 @@
   <view class="page-section page-section-gap">
     <map
       id="myMap"
-      style="width: 100%; height: 950rpx;"
+      style="width: 100%; height: {{map_height}}rpx;"
       latitude="{{latitude}}"
       longitude="{{longitude}}"
       bindmarkertap="markertap"
@@ -33,13 +33,12 @@
   
 
 
-    
 <modal title="请选择猫咪" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
   <view>
-    <image class="image" src= "{{cat_select_image}}" mode='aspectFill'></image>
+    <image class="select-image" src= "{{cat_select_image}}" mode='aspectFill'></image>
   </view>
   
-  <Select prop-array='{{selectArray}}' bind:myget='getDate' id="select"></Select>
+  <Select  prop-array='{{selectArray}}' bind:myget='getDate' id="select"></Select>
   1
   //1
   //需要换行的话直接添加view标签
@@ -53,18 +52,21 @@
 <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
   <view class="modals-cancel" bindtap="hideModal"></view>
   <view class="bottom-dialog-body bottom-pos" animation="{{animationData_bottom}}">
-    <button class='button' type='default'>{{showMarkerInfo.name}}</button>
+    <button style="width:100%;color: black;" class='button' type='default'>{{showMarkerInfo.name}}</button>
+    <!--<view class="position">
+      <text>{{showMarkerInfo.name}}</text>
+    </view> -->
     <view class="ImageAndInfo">
       <image class="modal-image" src= "{{showMarkerInfo.marker_info.img_url}}" mode='aspectFill'></image>
       <view class="updateInfo" >
-        <text>上传者</text>
+        <text class= "text_big">上传者</text>
         <view wx:if="{{showMarkerInfo.marker_info.avatar==null}}">
           <text class="text_small">佚名</text>
         </view>
         <view wx:else>
           <text class="text_small">{{showMarkerInfo.marker_info.avatar}}</text>
         </view>
-        <text>上传时间</text>
+        <text class= "text_big">上传时间</text>
         <view>
           <text class="text_small">{{showMarkerInfo.marker_info.time}}</text>
         </view>
@@ -79,7 +81,7 @@
 
 
   <view class="btn-area">
-    <button class='page-body-button' bindtap='buttonTap' type='primary'>添加猫咪位置</button>
+    <button style="width:100%;height: 100rpx;"class='page-body-button' bindtap='buttonTap' type='primary'>添加猫咪位置</button>
     
     
     <!--<button bindtap="mapSend" class="page-body-button" type="primary">发送</button>
