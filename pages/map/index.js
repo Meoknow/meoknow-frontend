@@ -51,6 +51,12 @@ Page({
     hideModal: true,
     /*底部弹框 */
     showMarkderInfo : null,
+    send_marker_type : 0 ,
+    items: [
+      { name: '0', value: '以当前位置上传' , checked: 'true' },
+      { name: '1', value: '选定位置上传'},
+
+    ]
   },
   reset:function(){
     var that = this 
@@ -96,6 +102,7 @@ Page({
     
     
   },
+  /*
   chooseLocation: function () {
     var that = this
     let markers = that.data.markers
@@ -109,6 +116,7 @@ Page({
       },
     })
   },
+  */
   catid_to_info : function(id){
     var that = this 
     let array = that.data.cat_info
@@ -120,6 +128,7 @@ Page({
     }
     return {"img_url":"image\location.png","name":"1"}
   },
+  
   /*底部弹框*/ 
   showModal: function() {
     var that = this;
@@ -305,11 +314,20 @@ Page({
       console.log("no selected cat")
       return 
     }
+    
     let data={
       latitude:that.data.center_latitude,
       longitude:that.data.center_longitude,
       cat_id:that.data.window_id,
       anonymous:true ,
+    }
+    if (that.data.send_marker_type == 0){
+      data={
+        latitude:that.data.latitude,
+        longitude:that.data.longitude,
+        cat_id:that.data.window_id,
+        anonymous:true ,
+      }
     }
     $api.request("POST","/map/", data)
     .then(res=>{
@@ -351,11 +369,20 @@ Page({
     let pre_markers = that.data.markers
     let pre_marker_info = that.data.markers_info
     let cat_name = that.catid_to_info(window_id).name
-    let markers=pre_markers.concat([new Marker(that.data.center_latitude,that.data.center_longitude,cat_name,pre_markers.length)])  
+    let latitude,longitude=[0,0] 
+    if (that.data.send_marker_type == 0 ){
+      latitude = that.data.latitude
+      longitude= that.data.longitude
+    }
+    else {
+      latitude= that.data.center_latitude
+      longitude= that.data.center_longitude
+    }
+    let markers=pre_markers.concat([new Marker(latitude,longitude,cat_name,pre_markers.length)])  
     let time = that.getCurentTime()
     let info = {
-      latitude:that.data.center_latitude,
-      longitude:that.data.center_longitude,
+      latitude:latitude,
+      longitude:longitude,
       cat_id:that.data.window_id,
       time : time,
     }
@@ -378,7 +405,13 @@ Page({
       markers,
     })
   },
-
+  radioChange: function (e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    var that = this 
+    that.setData({
+      send_marker_type :  e.detail.value
+    })
+  },
   getCenterLocation: function () {
     var that = this
     that.mapCtx.getCenterLocation({

@@ -25,7 +25,7 @@
   margin-bottom: 10rpx;
 }
 .btn-area{
-  margin-top: 60rpx;
+  margin-top: 30rpx;
   box-sizing: border-box;
   width: 100%;
   padding: 0 30rpx;
@@ -60,12 +60,20 @@
   margin: 0 10rpx;
   font-size: 14rpx;
 }
+/*单选框*/
+
+.radio {
+  margin-right: 180rpx;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+}
+
 /**index.wxss**/
  
 /*模态框*/
 .select-image{
-  width: 275px;
-  height: 275px;
+  width: 555rpx;
+  height: 555rpx;
 
   flex-direction: row;
 }
@@ -90,7 +98,7 @@
 .bottom-dialog-body {
   position: absolute;
   z-index: 10001;
-  bottom: 0px;
+  bottom: 0rpx;
   left: 0;
   right: 0;
   height: 500rpx;
