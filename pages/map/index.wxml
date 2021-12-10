@@ -2,7 +2,7 @@
   <view class="page-section page-section-gap">
     <map
       id="myMap"
-      style="width: 100%; height: {{map_height}}rpx;"
+      style="width: 100%; height: 88vh;"
       latitude="{{latitude}}"
       longitude="{{longitude}}"
       bindmarkertap="markertap"
@@ -39,10 +39,14 @@
   </view>
   
   <Select  prop-array='{{selectArray}}' bind:myget='getDate' id="select"></Select>
-  1
-  //1
-  //需要换行的话直接添加view标签
-  //需要换行的话直接添加view标签
+
+    <radio-group class="radio-group" bindchange="radioChange">
+        <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+            <text>{{item.value}}</text>
+        </radio>
+    </radio-group>
+     
+
 
 
   <!--//需要换行的话直接添加view标签 -->
