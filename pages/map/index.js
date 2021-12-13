@@ -22,9 +22,20 @@ function Marker(latitude,longitude,name,marker_id ) {
   this.width=20,  
   this.height=20,
   this.info = {}
+  this.show = 1
   
 }
+function MarkerMe(latitude,longitude,marker_id ) {
+  this.id= marker_id,
+  this.latitude= latitude,
+  this.longitude= longitude,
+  this.iconPath= "/image/map_me.jpg",
 
+  this.width=20,  
+  this.height=20,
+  this.show = 0
+  
+}
 function Marker_info_show(marker,name ) {
   this.marker_info = marker,
   this.name = name
@@ -55,7 +66,6 @@ Page({
     items: [
       { name: '0', value: '以当前位置上传' , checked: 'true' },
       { name: '1', value: '选定位置上传'},
-
     ]
   },
   reset:function(){
@@ -88,17 +98,21 @@ Page({
     that.mapCtx = wx.createMapContext('myMap')
 
     console.log("onReady")
-    that.catRequest()
+    
     wx.getLocation({
       type: 'wgs84',
       //altitude: true,
       success: function(res) {
+        let latitude=res.latitude        
+        let longitude=res.longitude
+        that.catRequest(latitude,longitude)
         that.setData({
           latitude:res.latitude,        
           longitude:res.longitude,
         })
       },
     })
+    
     
     
   },
@@ -147,8 +161,13 @@ Page({
   },
   callouttap(e) {
     console.log('@@@ callouttap', e)
+    console.log(e)
+    console.log(this.data.userInfo)
     var that = this 
     let marker_id = e.markerId
+    if (marker_id==1000){
+      return 
+    }
     let markers_info = that.data.markers_info[marker_id]
     let img_url = that.catid_to_info(markers_info.cat_id).img_url.split('/')
     if (markers_info.img_url === null || !markers_info.hasOwnProperty(img_url)) {
@@ -221,6 +240,7 @@ Page({
       select_chosen : false,
       })
     this.selectComponent('#select').init()
+    that.mapRequest()
     },
 
   
@@ -288,10 +308,12 @@ Page({
       let data = res.data.data
       let markers  = []
       let markers_info = []
+      markers = markers.concat([new MarkerMe(String(that.data.latitude),String(that.data.longitude),1000)])
+      markers_info = markers_info.concat({1:1})
       for (let index = 0; index < data.length; index++) {
         const element = data[index];
         let cat_info = that.catid_to_info(element.cat_id)
-        markers = markers.concat([new Marker(element.latitude,element.longitude,cat_info.name,index)])
+        markers = markers.concat([new Marker(element.latitude,element.longitude,cat_info.name,index+1)])
         markers_info = markers_info.concat([data[index]])
       }
       console.log(markers)
@@ -301,6 +323,7 @@ Page({
       })
       console.log(res.data.data)
       console.log(res)
+      console.log(markers_info)
       console.log("request =end")
     })
     .catch(err=>{
@@ -319,14 +342,14 @@ Page({
       latitude:that.data.center_latitude,
       longitude:that.data.center_longitude,
       cat_id:that.data.window_id,
-      anonymous:true ,
+      anonymous: false
     }
     if (that.data.send_marker_type == 0){
       data={
         latitude:that.data.latitude,
         longitude:that.data.longitude,
         cat_id:that.data.window_id,
-        anonymous:true ,
+        anonymous: false
       }
     }
     $api.request("POST","/map/", data)
@@ -337,7 +360,7 @@ Page({
       console.log(err.errMsg);
     })
   },
-  catRequest: function() {
+  catRequest: function(latitude,longitude) {
     var that = this;
     //var tmp = new Array();
     console.log("begin cat request")
@@ -370,6 +393,7 @@ Page({
     let pre_marker_info = that.data.markers_info
     let cat_name = that.catid_to_info(window_id).name
     let latitude,longitude=[0,0] 
+    
     if (that.data.send_marker_type == 0 ){
       latitude = that.data.latitude
       longitude= that.data.longitude
