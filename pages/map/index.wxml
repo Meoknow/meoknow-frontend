@@ -64,11 +64,11 @@
       <image class="modal-image" src= "{{showMarkerInfo.marker_info.img_url}}" mode='aspectFill'></image>
       <view class="updateInfo" >
         <text class= "text_big">上传者</text>
-        <view wx:if="{{showMarkerInfo.marker_info.avatar==null}}">
+        <view wx:if="{{showMarkerInfo.marker_info.username==null}}">
           <text class="text_small">佚名</text>
         </view>
         <view wx:else>
-          <text class="text_small">{{showMarkerInfo.marker_info.avatar}}</text>
+          <text class="text_small">{{showMarkerInfo.marker_info.username}}</text>
         </view>
         <text class= "text_big">上传时间</text>
         <view>
