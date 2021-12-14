@@ -38,6 +38,12 @@ App({
       url: '../book/book',
     })
   },
+  cdToMap()
+  {
+    wx.navigateTo({
+      url: '../map/index'
+    })
+  },
   cdToMy()
   {
     wx.switchTab({

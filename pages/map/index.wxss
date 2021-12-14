@@ -35,8 +35,8 @@
   background-color: #fff; 
   border: 1rpx solid #ccc;
   border-radius: 30rpx;
-  width: 150rpx;
-  height: 40rpx;
+  width: 250rpx;
+  height: 70rpx;
   display: inline-flex;
   padding: 5rpx 20rpx;
   justify-content: center;

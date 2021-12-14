@@ -34,7 +34,12 @@
             {
                 "pagePath": "pages/my/my",
                 "text": "我的"
+            },
+            {
+                "pagePath": "pages/recognize/recognize",
+                "text": "地图"
             }
+            
         ]
     },
     "usingComponents": {

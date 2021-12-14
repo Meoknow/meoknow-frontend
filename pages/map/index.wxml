@@ -9,7 +9,7 @@
       bindcallouttap="callouttap"
       bindlabeltap="labeltap"
       markers="{{markers}}"
-      scale="16"
+      scale="16.5"
       bindregionchange="regionDidChange"
     >
 

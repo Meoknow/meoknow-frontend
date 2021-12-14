@@ -27,6 +27,10 @@ Page({
   {
     app.cdToBook();
   },
+  cdToMap()
+  {
+    app.cdToMap();
+  },
   landscapeClose()
   {
     this.setData({landscapeVisible:false,});
