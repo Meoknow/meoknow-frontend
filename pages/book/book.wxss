@@ -56,7 +56,6 @@
   height: 50rpx;
   color: #aaa;
   text-align: center;
-  border: 1px solid #ddd;
   border-radius: 20rpx;
   font-size: 40rpx;
 }
