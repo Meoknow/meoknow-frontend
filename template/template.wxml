@@ -10,12 +10,12 @@
 <block>
 <view class="commentmut">
 		
-	<scroll-view id="comment-main" scroll-y lower-threshold="100" bindscrolltolower="scrollToLower" style="height: 100vh;">
-		<view class="margin-top"></view>
-		<view class="top-title">
+	<view class="margin-top"></view>
+	<view class="top-title">
 			评论({{commentInfo.num}})
 			<view class="button write-comment" data-pid="0" data-aid="{{commentInfo.aid}}" data-nav_id="{{commentInfo.nav_id}}" data-type="{{commentInfo.type}}" catchtap="replayAct"><i class="iconfont ic-write"></i>写评论</view>
-		</view>
+	</view>
+	<scroll-view id="comment-main" scroll-y lower-threshold="100" bindscrolltolower="scrollToLower" style="height: 100vh;">
 		<view class="comments-wrap">
 			<!--------comment-list------->
 			<block wx:for="{{commentInfo.list}}" wx:for-item="co" wx:for-index="index" wx:key="*.this">			

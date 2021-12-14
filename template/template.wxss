@@ -17,9 +17,9 @@
 /***thumbsUp***/
 
 .commentmut #comment-main{position:relative;margin-left:0;margin-right:0;background-color:#fff}
-.commentmut #comment-main .margin-top{height:10px;background-color:#f5f5f5;width:100%;}
-.commentmut #comment-main .top-title {padding:15px 18px 10px; border-bottom:none; margin-left:0; margin-right:0; font-size:16px; font-weight:700; color:#545454;}
-.commentmut #comment-main .top-title .write-comment{float:right;color:#ea6f5a;line-height:22px;font-size:14px}
+.commentmut .margin-top{height:10px;background-color:#f5f5f5;width:100%;}
+.commentmut .top-title {padding:15px 18px 10px; border-bottom:none; margin-left:0; margin-right:0; font-size:16px; font-weight:700; color:#545454;}
+.commentmut .top-title .write-comment{float:right;color:#ea6f5a;line-height:22px;font-size:14px}
 .commentmut #comment-main .comments-wrap>.comment-item{border-bottom: 1px solid; border-color: #f0f0f0;}
 .commentmut #comment-main .comments-wrap>.comment-item:last-child{border-bottom:none}
 .commentmut #comment-main .comment-open-app-btn-wrap{text-align:center;padding-bottom:20px;margin-top:20px}
