@@ -1,3 +1,72 @@
+@import "/template/template.wxss";
+
+/* 导航栏 wxss*/
+page {
+  height: 100%;
+}
+
+.weui-navbar {
+  position: sticky;
+  top: 0rpx;
+  margin-top: 20rpx;
+  height: 7%;
+  z-index: 500;
+  display: flex;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #00bba1;
+}
+
+.rec {
+  width: 100%;
+  height: 1000rpx;
+}
+
+.swiper-box {
+  height: 93%;
+  width: 100%;
+}
+
+.scl {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.scl-tab {
+  margin-top: 500rpx;
+  color: #999;
+  font-size: 39rpx;
+}
+
+.weui-navbar__item {
+  flex: 1;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #494f56;
+}
+
+.weui-navbar__item.weui-bar__item_on {
+  color: #00bba1;
+}
+
+.weui-navbar__slider {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  height: 5rpx;
+  background-color: #19c4ad;
+  transition: transform .3s;
+  width: 175rpx;
+  left: 100rpx;
+}
+
+
+
+
+/* 图鉴 wxss*/
 .neko-box{
   }
   .neko-box image{
@@ -6,8 +75,8 @@
     margin-bottom:20px;
     margin-left: auto;
     margin-right: auto;
-    width: 650rpx;
-    height: 650rpx;
+    width: 600rpx;
+    height: 600rpx;
     border-radius: 10px;
     }
   .neko-box .neko-text{
@@ -16,8 +85,9 @@
     font-size: 50rpx;
   }
 
-  .text{ 
-    margin-top:40rpx;
+  .text{
+    position: sticky;
+    top: 30rpx;
     margin-left:50rpx;
   }
 

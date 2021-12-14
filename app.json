@@ -1,8 +1,8 @@
 {
     "pages": [
+        "pages/recognize/recognize",
         "pages/map/index",
         "pages/index/index",
-        "pages/recognize/recognize",
         "pages/book/book",
         "pages/book/detail/detail",
         "pages/my/my",
