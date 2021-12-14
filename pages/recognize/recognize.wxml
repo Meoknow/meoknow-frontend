@@ -28,11 +28,6 @@
   <view class="descripterBlank" />
   <view class="descripter"> Meo know</view>
   <view class="mySubTitle"> 一键喵懂，鉴你所见</view>
-<!--
-  <view class="myButtonImage">
-    <wux-image  wux-class="image" shape="circle" src="../../image/camera.jpg" width="200rpx" height="200rpx" bind:click="showActionSheet"/>
-  </view>
--->
   <image class="myButtonImage" src="../../image/camera.jpg"  bindtap="showActionSheet"/>
   <image class="backGround" src="../../image/origin.jpg" mode="aspectFill"/>
 
