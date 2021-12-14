@@ -21,6 +21,8 @@
                 <scroll-view class="scl" scroll-y bindscrolltolower="loadMore0">
 
                     <!-- 图鉴 -->
+                    <view class="book">
+                    <view class="margin-top"></view>
                     <view class="text">
                         <view class="list">
                             <view class="title">性别</view>
@@ -86,7 +88,7 @@
                             </view>
                         </view>
                     </view>
-
+                    </view>
                     
                     <!-- 图鉴结束 -->
                 </scroll-view>
