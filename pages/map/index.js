@@ -10,17 +10,17 @@ function Marker(latitude,longitude,name,marker_id ) {
   this.callout= {
     content: name,
     color: '#000000',
-    fontSize: 10,
+    fontSize: 15,
     borderWidth: 1,
     borderRdius: 10,
     borderColor: '#000000',
     bgColor: '#ccc',
-    padding: 3,
+    padding: 5,
     display: 'ALWAYS',
     textAlign: 'center'
   }
-  this.width=20,  
-  this.height=20,
+  this.width=30,  
+  this.height=30,
   this.info = {}
   this.show = 1
   
@@ -29,7 +29,7 @@ function MarkerMe(latitude,longitude,marker_id ) {
   this.id= marker_id,
   this.latitude= latitude,
   this.longitude= longitude,
-  this.iconPath= "/image/map_me.jpg",
+  this.iconPath= "/image/map_me.png",
 
   this.width=20,  
   this.height=20,

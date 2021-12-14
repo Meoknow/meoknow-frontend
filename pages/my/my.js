@@ -24,6 +24,10 @@ Page({
   {
     app.cdToBook();
   },
+  cdToMap()
+  {
+    app.cdToMap();
+  },
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({
