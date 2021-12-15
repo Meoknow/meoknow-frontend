@@ -2,6 +2,7 @@
   <view class="page-section page-section-gap">
     <map
       id="myMap"
+      
       style="width: 100%; height: 88vh;"
       latitude="{{latitude}}"
       longitude="{{longitude}}"
@@ -10,11 +11,13 @@
       bindlabeltap="labeltap"
       markers="{{markers}}"
       scale="16.5"
+      bindtap = "maptap"
       bindregionchange="regionDidChange"
+      show-location="true"
     >
-
-      <image class="manpCenter" hidden="{{modalHidden==false}}" src="/image/map_center.png"></image>
       <!--
+      <image class="manpCenter" hidden="{{modalHidden==false}}" src="/image/map_center.png"></image>
+      
       <cover-view slot="callout">
         <block wx:for="{{customCalloutMarkerIds}}" wx:key="*this"></block>
           <cover-view  class="customCallout" marker-id="{{item}}" >
