@@ -25,14 +25,14 @@ function Marker(latitude,longitude,name,marker_id ) {
   this.show = 1
   
 }
-function MarkerMe(latitude,longitude,marker_id ) {
+function MarkerCenter(latitude,longitude,marker_id ) {
   this.id= marker_id,
   this.latitude= latitude,
   this.longitude= longitude,
-  this.iconPath= "/image/map_me.png",
+  this.iconPath= "/image/map_center.png",
 
-  this.width=20,  
-  this.height=20,
+  this.width=17,  
+  this.height=28
   this.show = 0
   
 }
@@ -47,7 +47,8 @@ Page({
     longitude: 113.324520,
     center_latitude:23.096994, //实时地图中心坐标
     center_longitude: 113.324520,
-   
+    point_latitude:23.096994, //点击点
+    point_longitude: 113.324520,
     modalHidden: true,
     select_chosen :false, // 显示了窗口后是false,进行了选择后为true，当点击确定时候变为false,用于确定是否在窗口里完成了选择，选择了就添加marker
     marker_id : 0 ,
@@ -65,7 +66,7 @@ Page({
     send_marker_type : 0 ,
     items: [
       { name: '0', value: '以当前位置上传' , checked: 'true' },
-      { name: '1', value: '选定位置上传'},
+      { name: '1', value: '以选定位置上传'},
     ]
   },
   reset:function(){
@@ -109,7 +110,9 @@ Page({
         that.setData({
           latitude:res.latitude,        
           longitude:res.longitude,
+
         })
+
       },
     })
     
@@ -142,22 +145,17 @@ Page({
     }
     return {"img_url":"image\location.png","name":"1"}
   },
-  
-  /*底部弹框*/ 
-  showModal: function() {
-    var that = this;
-    console.log(that.data.showMarkerInfo)
+  maptap(e){
+    console.log(e)
+    var that = this 
+    let MarkerCenterNew = that.data.markers
+    MarkerCenterNew[0].latitude = e.detail.latitude
+    MarkerCenterNew[0].longitude = e.detail.longitude
     that.setData({
-      hideModal: false
+      markers : MarkerCenterNew,
+      point_latitude : e.detail.latitude,
+      point_longitude : e.detail.longitude,
     })
-    var animation = wx.createAnimation({
-      duration: 600, //动画的持续时间 默认400ms 数值越大，动画越慢 数值越小，动画越快 
-      timingFunction: 'ease', //动画的效果 默认值是linear 
-    })
-    this.animation = animation
-    setTimeout(function() {
-      that.fadeIn(); //调用显示动画 
-    }, 200)
   },
   callouttap(e) {
     console.log('@@@ callouttap', e)
@@ -181,6 +179,23 @@ Page({
     that.showModal()
     
   },
+  /*底部弹框*/ 
+  showModal: function() {
+    var that = this;
+    console.log(that.data.showMarkerInfo)
+    that.setData({
+      hideModal: false
+    })
+    var animation = wx.createAnimation({
+      duration: 600, //动画的持续时间 默认400ms 数值越大，动画越慢 数值越小，动画越快 
+      timingFunction: 'ease', //动画的效果 默认值是linear 
+    })
+    this.animation = animation
+    setTimeout(function() {
+      that.fadeIn(); //调用显示动画 
+    }, 200)
+  },
+ 
   // 隐藏遮罩层 
   hideModal: function() {
     var that = this;
@@ -234,13 +249,15 @@ Page({
     if (that.data.select_chosen === true ){
       that.myAddMarker();
       that.mapSend()
+      that.mapRequest()
     }
+    that.mapRequest()
     that.setData({
       modalHidden: true,
       select_chosen : false,
       })
     this.selectComponent('#select').init()
-    that.mapRequest()
+    
     },
 
   
@@ -308,7 +325,7 @@ Page({
       let data = res.data.data
       let markers  = []
       let markers_info = []
-      markers = markers.concat([new MarkerMe(String(that.data.latitude),String(that.data.longitude),1000)])
+      markers = markers.concat([new MarkerCenter(String(that.data.point_latitude),String(that.data.point_longitude),1000)])
       markers_info = markers_info.concat({1:1})
       for (let index = 0; index < data.length; index++) {
         const element = data[index];
@@ -339,8 +356,8 @@ Page({
     }
     
     let data={
-      latitude:that.data.center_latitude,
-      longitude:that.data.center_longitude,
+      latitude:that.data.point_latitude,
+      longitude:that.data.point_longitude,
       cat_id:that.data.window_id,
       anonymous: false
     }
@@ -399,8 +416,8 @@ Page({
       longitude= that.data.longitude
     }
     else {
-      latitude= that.data.center_latitude
-      longitude= that.data.center_longitude
+      latitude= that.data.point_latitude
+      longitude= that.data.point_longitude
     }
     let markers=pre_markers.concat([new Marker(latitude,longitude,cat_name,pre_markers.length)])  
     let time = that.getCurentTime()
@@ -412,23 +429,13 @@ Page({
     }
     let markers_info=pre_marker_info.concat([info])  
     
-    console.log(markers)
+    console.log(info)
     that.setData({
       markers,
       markers_info,
     })
   },
   
-  addMarker() {
-    const markers_toadd = allMarkers
-    let pre_markers = this.data.markers
-
-    let markers = pre_markers.concat(markers_toadd)
-    console.log(markers)
-    this.setData({
-      markers,
-    })
-  },
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value)
     var that = this 
