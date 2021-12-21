@@ -92,6 +92,8 @@
                     
                     <!-- 图鉴结束 -->
                 </scroll-view>
+            </swiper-item>
+
             <swiper-item>
                 <scroll-view class="scl" scroll-y bindscrolltolower="loadMore0">
 
@@ -108,4 +110,4 @@
 
                 </scroll-view>
             </swiper-item>
-
+        </swiper>
