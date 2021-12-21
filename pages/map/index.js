@@ -45,10 +45,10 @@ Page({
   data: {
     latitude: 23.096994,//中心坐标，仅load地图时用
     longitude: 113.324520,
-    center_latitude:23.096994, //实时地图中心坐标
-    center_longitude: 113.324520,
+
     point_latitude:23.096994, //点击点
     point_longitude: 113.324520,
+    point_init_load :false,
     modalHidden: true,
     select_chosen :false, // 显示了窗口后是false,进行了选择后为true，当点击确定时候变为false,用于确定是否在窗口里完成了选择，选择了就添加marker
     marker_id : 0 ,
@@ -99,41 +99,40 @@ Page({
     that.mapCtx = wx.createMapContext('myMap')
 
     console.log("onReady")
+    that.mygetLocation()
     
+    
+    
+    
+  },
+  mygetLocation : function(){
+    var that = this 
     wx.getLocation({
-      type: 'wgs84',
+      type: 'gcj02',
       //altitude: true,
       success: function(res) {
-        let latitude=res.latitude        
-        let longitude=res.longitude
-        that.catRequest(latitude,longitude)
-        that.setData({
-          latitude:res.latitude,        
-          longitude:res.longitude,
 
-        })
+        that.catRequest()
+        if (that.data.point_init_load == false){
+          that.setData({
+            latitude:res.latitude,        
+            longitude:res.longitude,
+            point_latitude :res.latitude,
+            point_longitude:res.longitude,
+            point_init_load:true
+          })
+        }
+        else{
+          that.setData({
+            latitude:res.latitude,        
+            longitude:res.longitude,
+          })
+        }
+        
 
       },
     })
-    
-    
-    
   },
-  /*
-  chooseLocation: function () {
-    var that = this
-    let markers = that.data.markers
-    wx.chooseLocation({
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          markers : markers.concat([new Marker(res.latitude,res.longitude,10)])
-        })
-       
-      },
-    })
-  },
-  */
   catid_to_info : function(id){
     var that = this 
     let array = that.data.cat_info
@@ -246,8 +245,9 @@ Page({
   /*点击确认*/
   modalConfirm: function() {
     var that = this 
+    that.mygetLocation()
     if (that.data.select_chosen === true ){
-      that.myAddMarker();
+      //that.myAddMarker();
       that.mapSend()
       that.mapRequest()
     }
@@ -260,45 +260,6 @@ Page({
     
     },
 
-  
-  getCurentTime :function (isTime=true) {
-    var now = new Date();
-    var clock = "";
-    var year = now.getFullYear();       // 年
-    clock += year + "-";
-    var month = now.getMonth() + 1;     // 月
-    if (month < 10) {
-        clock += "0";
-    }
-    clock += month + "-";
-    var day = now.getDate();            // 日
-    if (day < 10) {
-        clock += "0";
-    }
-    if (isTime == true) {
-        clock += day + " ";
-        var hh = now.getHours();            // 时
-        if (hh < 10) {
-            clock += "0";
-        }
-
-        clock += hh + ":";
-        var mm = now.getMinutes();     // 分
-        if (mm < 10) {
-            clock += '0';
-        }
-        clock += mm + ":";
-        var ss = now.getSeconds();     // 秒
-        if (ss < 10) {
-            clock += '0';
-        }
-        clock += ss;
-    }
-    if (isTime == false) {
-        clock += day;
-    }
-    return clock;
-  },
   showText:function(){
     wx.showToast({
       title: "成功", // 提示的内容
@@ -377,7 +338,7 @@ Page({
       console.log(err.errMsg);
     })
   },
-  catRequest: function(latitude,longitude) {
+  catRequest: function() {
     var that = this;
     //var tmp = new Array();
     console.log("begin cat request")
@@ -401,41 +362,7 @@ Page({
       console.log(err.errMsg);
     })
   },
-  myAddMarker() {
-    var that = this 
-    let window_id = that.data.window_id
-    //console.log(cat_id)
-    console.log(that.data.window_id)
-    let pre_markers = that.data.markers
-    let pre_marker_info = that.data.markers_info
-    let cat_name = that.catid_to_info(window_id).name
-    let latitude,longitude=[0,0] 
-    
-    if (that.data.send_marker_type == 0 ){
-      latitude = that.data.latitude
-      longitude= that.data.longitude
-    }
-    else {
-      latitude= that.data.point_latitude
-      longitude= that.data.point_longitude
-    }
-    let markers=pre_markers.concat([new Marker(latitude,longitude,cat_name,pre_markers.length)])  
-    let time = that.getCurentTime()
-    let info = {
-      latitude:latitude,
-      longitude:longitude,
-      cat_id:that.data.window_id,
-      time : time,
-    }
-    let markers_info=pre_marker_info.concat([info])  
-    
-    console.log(info)
-    that.setData({
-      markers,
-      markers_info,
-    })
-  },
-  
+
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value)
     var that = this 
@@ -443,25 +370,7 @@ Page({
       send_marker_type :  e.detail.value
     })
   },
-  getCenterLocation: function () {
-    var that = this
-    that.mapCtx.getCenterLocation({
-      success: function(res){
-        that.setData({
-          center_latitude:res.latitude,
-          center_longitude:res.longitude
-        })
-        console.log(res.latitude + ',' + res.longitude)
-      }
-    })
-   }, 
 
-  regionDidChange(e) {
-    var that = this 
-    if (e.type == 'end') {    // 注意，这个事件的type至少有2种类型，'begin'和'end'，我们滑动一下地图，会有2次响应。但我们只关注'end'！！！
-        that.getCenterLocation()
-    }
-  },
   removeMarker() {
     this.setData({
       markers: [],
