@@ -5,30 +5,16 @@
       
       style="width: 100%; height: 88vh;"
       latitude="{{latitude}}"
-      longitude="{{longitude}}"
+      longitude="{{longitude}}"      
       bindmarkertap="markertap"
       bindcallouttap="callouttap"
       bindlabeltap="labeltap"
       markers="{{markers}}"
       scale="16.5"
       bindtap = "maptap"
-      bindregionchange="regionDidChange"
+
       show-location="true"
     >
-      <!--
-      <image class="manpCenter" hidden="{{modalHidden==false}}" src="/image/map_center.png"></image>
-      
-      <cover-view slot="callout">
-        <block wx:for="{{customCalloutMarkerIds}}" wx:key="*this"></block>
-          <cover-view  class="customCallout" marker-id="{{item}}" >
-            <cover-image class="icon" src="/image/voice.png"></cover-image>
-            <cover-view class="content"> 
-              {{num}}-{{item}}-{{index}}
-            </cover-view>
-          </cover-view>
-        
-      </cover-view>
-      -->
     </map>
   </view>
   
@@ -90,18 +76,6 @@
   <view class="btn-area">
     <button style="width:100%;height: 100rpx;"class='page-body-button' bindtap='buttonTap' type='primary'>添加猫咪位置</button>
     
-    
-    <!--<button bindtap="mapSend" class="page-body-button" type="primary">发送</button>
-    <button bindtap="mapRequest" class="page-body-button" type="primary">请求</button>
-    <button bindtap="showText" class="page-body-button" type="primary"> showText</button> 
-    <button bindtap="removeMarker" class="page-body-button" type="primary">移除所有marker</button>
-    <button bindtap="catRequest" class="page-body-button" type="primary">获得猫信息</button>
-    <button bindtap="addMarker" class="page-body-button" type="primary">添加marker</button>
-    <button bindtap="myAddMarker" class="page-body-button" type="primary">自定义加marker</button>
-    <button bindtap="chooseLocation" class="page-body-button" type="primary">选点</button>
-    <button bindtap="translateMarker" class="page-body-button" type="primary">随机移动一个marker</button>
-    <button bindtap="changeMarkerId" class="page-body-button" type="primary">轮换自定义callout的位置</button>
-    <button bindtap="changeContent" class="page-body-button" type="primary">改变自定义callout内容</button> --->
   </view>
 </view>
 
