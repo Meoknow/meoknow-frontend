@@ -4,6 +4,7 @@ const app = getApp()
 var server=app.globalData.server;
 Page({
   data: {
+    PageBook: 0,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
