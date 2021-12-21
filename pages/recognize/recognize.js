@@ -58,18 +58,25 @@ Page({
   {
     let mypage=this;
     mypage.setData({loadingHidden:true});
-    console.log("start verify");
     let i;
-    if(invalid || catPictures.length==0)
+    if(invalid)
     {
       console.log('catPictureLength=0');
       this.tipFindNoCat();
       return
     }
+    console.log(catPictures)
     //现在传来的猫照片是合法且非零的
     for(i=catPictures.length;i>=0;--i)
       if(catPictures[i]==1)
         catPictures.splice(i,1);
+    console.log(catPictures)
+    if(catPictures.length==0)
+    {
+      console.log('catPictureLength=0');
+      this.tipFindNoCat();
+      return
+    }
     wx.navigateTo({
       url: "/pages/recognize/reply?rescats="+JSON.stringify(catPictures)+"&userimage="+returnPicture
     })
@@ -79,7 +86,6 @@ Page({
     let mypage=this;
     $api.request("GET","/cats/"+cat_id,"")
       .then(res=>{
-        console.log("request =end");
         catPictures[index]=res.data.data;
         catPictures[index].confidence=confidence;
         catPictures[index].img_url="http://"+catPictures[index].img_url;
@@ -118,7 +124,6 @@ Page({
   },
   addCatInformation(myBase64Img)
   {
-    console.log("ax");
     let test={name:'asttfd6',data:myBase64Img};
     wx.request({
       url: server+'/cats/',
@@ -129,7 +134,6 @@ Page({
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       //header: {}, // 设置请求的 header
       success: function(res){
-        console.log(res.statusCode);
         if(res.statusCode==200)//加入猫
         console.log('build cat information success');
       },
@@ -147,14 +151,10 @@ Page({
     });
     let myBase64Img
     if(x.constructor == Object)
-    {
       myBase64Img=x.myBase64Img
-      console.log(myBase64Img)
-    }
     else myBase64Img=x
     $api.request("POST","/identify/",{"image":myBase64Img})
     .then(res=>{
-      console.log("post success");
       totalRequest=0;
       if(res.statusCode==200)//找到猫
       {
@@ -167,15 +167,12 @@ Page({
           //请求表示找到猫，但猫列表为空
           mypage.verifyCatInformation(1);
         }
-        console.log(totalRequest);
         for(i=0;i<totalRequest;++i)
         catPictures.push(1);
         for(i=0;i<res.data.data.cats.length;++i)
         {
           let cat=res.data.data.cats[i];
           let cat_id=cat.cat_id;//get cat_id
-          console.log(cat);
-          console.log(cat_id);
           mypage.getCatInformation(cat_id,i,cat.confidence);//transform it into information and push to cat Pictures.
         }
       }
@@ -191,7 +188,6 @@ Page({
     let mypage=this;
     var pages = getCurrentPages()    //获取加载的页面
     var currentPage = pages[pages.length-1]    //获取当前页面的对象
-    console.log(currentPage)
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'], 
@@ -205,7 +201,6 @@ Page({
           filePath: res.tempFilePaths[0],
           encoding: "base64",//base64格式解码
           success: function(data) {
-            console.log(data)
             let myBase64Img;
             let suffix;
             let i;
@@ -215,16 +210,7 @@ Page({
               suffix=res.tempFilePaths[0].slice(i+1);
               break;
             }
-            console.log(suffix);
             myBase64Img = 'data:image/'+suffix+';base64,'+data.data;//解码后放在这
-//            mypage.updatePhotos(myBase64Img);
-//            mypage.addCatInformation(myBase64Img);
-/*            totalRequest=3;
-            for(i=0;i<totalRequest;++i)
-            catPictures.push(1);
-            mypage.getCatInformation(1,0,0.5);
-            mypage.getCatInformation(1,1,0.4);
-            mypage.getCatInformation(1,2,0.3);*/
             mypage.postMyImg(myBase64Img);
           }
         });
