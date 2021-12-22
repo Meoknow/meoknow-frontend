@@ -5,6 +5,7 @@
         "pages/index/index",
         "pages/book/book",
         "pages/book/detail/detail",
+        "pages/sudo/map",
         "pages/my/my",
         "pages/book/search/search",
         "pages/book/detail",
@@ -32,7 +33,7 @@
                 "text": "图鉴"
             },
             {
-                "pagePath": "pages/recognize/recognize",
+                "pagePath": "pages/sudo/map",
                 "text": "地图"
             },
             {
@@ -51,13 +52,7 @@
         "wux-cell-group": "/dist/cell-group/index",
         "wux-cell": "/dist/cell/index",
         "wux-button": "/dist/button/index",
-        "wux-row": "/dist/row/index",
-        "wux-col": "/dist/col/index",
-        "wux-image": "/dist/image/index",
-        "wux-popover": "/dist/popover/index",
-        "wux-toptips": "/dist/toptips/index",
-        "wux-landscape": "/dist/landscape/index",
-        "wux-animation-group": "/dist/animation-group/index"
+        "wux-toptips": "/dist/toptips/index"
     },
     "style": "v2",
     "permission": {
